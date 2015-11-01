@@ -6,6 +6,11 @@
 - SEO
 
 ## CSS
+- CSS Trick
+    + CSS2
+        * 字符超出隐藏(...)
+    + CSS3
+        * [FlexBox[图]](asstes/imgs/flexboxsheet.png)
 - UI框架
     + [Bootstrap](http://getbootstrap.com/)
     + [Semantic UI](http://www.semantic-ui.com/)
@@ -33,7 +38,8 @@
     + [Backbone.js](http://backbonejs.org/)
     + [Vue.js](http://vuejs.org/)
     + [React](http://facebook.github.io/react/)
-- [模块化](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
+- 模块化
+    + [为什么要模块化](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
     + CommonJS规范
         * [browserify](http://browserify.org/)
         * [webpack](http://webpack.github.io/) (*不只*是个js打包工具)
@@ -44,10 +50,12 @@
 
 ## 移动端Web前端
 - HTML5/CSS3
+- [移动端性能优化指南[图]](assets/imgs/mobile.png)
 - [媒体查询 + REM单位]()
 
 ## 前端构建
 - [Gulp](http://gulpjs.com/) (基于流的构建工具)
+    + [gulp手册[图]](assets/imgs/gulp.png)
     + [gulp插件介绍](http://colobu.com/2014/11/17/gulp-plugins-introduction/)
     + [gulpfile示例](https://github.com/blade254353074/eg.browserify/blob/master/gulpfile.js)
 - [webpack](http://webpack.github.io/)
@@ -57,12 +65,14 @@
 
 ## 版本控制
 - Git
+    + [Git常用命令速查表[图]](assets/imgs/git.jpg)
     + [Git for Windows](https://git-for-windows.github.io/)
+    + [Git中文版教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
 ## 开发工具
 - 编辑器
     + Sublime Text3 
-        * [Sublime Text快捷键](assets/imgs/sublime-text-3-cheat-sheet-wallpaper-large.jpg)
+        * [Sublime Text快捷键[图]](assets/imgs/sublime-text-3-cheat-sheet-wallpaper-large.jpg)
         * [Sublime Text 3解放鼠标的快捷键总结](http://www.tuicool.com/articles/INRjai)
         * [动图展示16个Sublime Text快捷键用法](http://www.techug.com/16-subline-text-tips)
         * [Sublime Text3 插件](SublimeText.md)

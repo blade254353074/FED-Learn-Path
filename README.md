@@ -13,6 +13,7 @@
 ## JavaScript
 - 库
     + [jQuery](http://jquery.com/) (DOM操作、ajax、事件委托、自定义事件、js动画...)
+    + [Zeptojs](http://zeptojs.com/) (小型jQuery 9.1kb，移动端jQuery类库，语法相同)
     + [Underscore](http://underscorejs.org/)/[lodash](http://lodash.com/) (数据操作库)
 - 模板引擎 ([为什么要用模板引擎?](https://github.com/aui/tmodjs/blob/master/doc/why-tmodjs.md))
     + 前端模板
@@ -40,6 +41,11 @@
         * [RequireJS](http://www.requirejs.org/)
     + CMD规范
         * Sea.js
+
+## 移动端Web前端
+- HTML5/CSS3
+- [媒体查询 + REM单位]()
+
 ## 前端构建
 - [Gulp](http://gulpjs.com/) (基于流的构建工具)
     + [gulp插件介绍](http://colobu.com/2014/11/17/gulp-plugins-introduction/)
@@ -49,9 +55,17 @@
 - [FIS](http://fis.baidu.com/) (百度FED的前端整套构建工具)
 - Grunt
 
+## 版本控制
+- Git
+    + [Git for Windows](https://git-for-windows.github.io/)
+
 ## 开发工具
 - 编辑器
-    + Sublime Text3 ([Sublime Text3 插件](SublimeText.md))
+    + Sublime Text3 
+        * [Sublime Text快捷键](assets/imgs/sublime-text-3-cheat-sheet-wallpaper-large.jpg)
+        * [Sublime Text 3解放鼠标的快捷键总结](http://www.tuicool.com/articles/INRjai)
+        * [动图展示16个Sublime Text快捷键用法](http://www.techug.com/16-subline-text-tips)
+        * [Sublime Text3 插件](SublimeText.md)
     + Atom
     + VS Code
 - IDE

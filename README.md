@@ -9,16 +9,24 @@
 - UI框架
     + [Bootstrap](http://getbootstrap.com/)
     + [Semantic UI](http://www.semantic-ui.com/)
+    
 ## JavaScript
 - 库
     + [jQuery](http://jquery.com/) (DOM操作、ajax、事件委托、自定义事件、js动画...)
     + [Underscore](http://underscorejs.org/)/[lodash](http://lodash.com/) (数据操作库)
-- 模板引擎 [为什么要用模板引擎?](https://github.com/aui/tmodjs/blob/master/doc/why-tmodjs.md)
-    + [artTemplate](https://github.com/aui/artTemplate)
-        * [TmodJS 模板预编译工具](https://github.com/aui/tmodjs)
-    + [Handlebars](http://handlebarsjs.com/)
-        * [Handlebars文档笔记](www.ghostchina.com/handlebars-wen-dang-bi-ji/)
-        * [Handlebars中文文档](http://segmentfault.com/a/1190000000342636)
+- 模板引擎 ([为什么要用模板引擎?](https://github.com/aui/tmodjs/blob/master/doc/why-tmodjs.md))
+    + 前端模板
+        * [artTemplate](https://github.com/aui/artTemplate)
+            - [TmodJS 模板预编译工具](https://github.com/aui/tmodjs)
+        * [Handlebars](http://handlebarsjs.com/)
+            - [Handlebars文档笔记](www.ghostchina.com/handlebars-wen-dang-bi-ji/)
+            - [Handlebars中文文档](http://segmentfault.com/a/1190000000342636)
+        * [Mustache](https://github.com/janl/mustache.js)
+    + 后端模板(Java)
+        * JSP
+        * FreeMarker
+            - [前端编写FreeMarker所要掌握的](http://handyxuefeng.blog.163.com/blog/static/454521722013102055546118/)
+            - [FreeMarker中文手册](FreeMarker_Manual_zh_CN.pdf)
 - 框架
     + [AngularJS](https://angular.io/)
     + [Backbone.js](http://backbonejs.org/)

@@ -10,7 +10,8 @@
     + CSS2
         * 字符超出隐藏(...)
     + CSS3
-        * [FlexBox[图]](asstes/imgs/flexboxsheet.png)
+        * Media Query(媒体查询，响应式)
+        * [FlexBox[图]](assets/imgs/flexboxsheet.png)
 - UI框架
     + [Bootstrap](http://getbootstrap.com/)
     + [Semantic UI](http://www.semantic-ui.com/)

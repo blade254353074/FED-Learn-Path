@@ -4,16 +4,20 @@
 - [HTML5模板]()
 - HTML5标签
     + [详解HTML<head> 头标签元素的意义以及使用场景](http://www.58img.com/web/2220)
-- 标签语义化
-    + header、footer
-    + nav
-    + section、article、aside
-    + 
+    + [标签语义化](http://www.w3school.com.cn/tags/index.asp)
+        * nav, section, article, aside, menu, menuitem, figure
+        * p, br, hr, blockquote, code, pre
+        * title, mark, small, del, i, em, sub
+        * header, footer, summary, details, time, dialog
+        * ul li, dl dt dd, h1 to h6
+        * fieldset, legend, form , label, input, select
+        * table, caption, thead, tbody, th, thd, tfoot
 - SEO
 
 ## CSS
-- CSS Trick
+- CSS Tricks
     + CSS实例
+        * [CSS选择器优先级]()
         * [定位(Position)]()
         * [盒模型(BoxSize)]()
         * [清除浮动(Clearfix)]()
@@ -52,6 +56,7 @@
     + Sass 
         * [为什么要用CSS预编译工具]()
         * [SCSS语法]()
+
 - UI框架
     + [Bootstrap](http://getbootstrap.com/)
     + [Semantic UI](http://www.semantic-ui.com/)
@@ -95,6 +100,8 @@
         * [RequireJS](http://www.requirejs.org/)
     + CMD规范
         * Sea.js
+
+## [HTML-CSS-JS测试](http://davidshariff.com/quiz/)
 
 ## RESTful
 

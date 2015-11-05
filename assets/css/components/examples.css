@@ -1,5 +1,8 @@
-#title {
-    padding: 30px 0;
+.exp-title {
+    padding: 20px 30px;
     margin-top: 0;
     border-bottom: 1px solid #2A76F0;
+}
+.exp-title-sub {
+    padding-left: 40px;
 }

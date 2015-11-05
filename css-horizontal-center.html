@@ -16,13 +16,21 @@
             width: 970px;
             margin: 0 auto;
         }
+        .inline-parent {
+            text-align: center;
+        }
+        .inline-center {
+            display: inline-block;
+
+        }
     </style>
 </head>
 
 <body>
-    <h1 id="title">CSS 水平居中</h1>
-    <div class="container">
-        <h3>固定宽度，块级元素</h3>
+    <h1 class="exp-title">CSS 水平居中</h1>
+    <h3 class="exp-title-sub">固定宽度，块级元素</h3>
+    <div class="container" style="border: 1px solid #e60">
+        <p>我是居中块</p>
         <pre>
             <code>
             .container {
@@ -32,6 +40,24 @@
             </code>
         </pre>
     </div>
+    <hr>
+    <h3 class="exp-title-sub">行内块元素，不固定宽度</h3>
+    <div class="inline-parent">
+        <div class="inline-center">
+            <p>我是居中块</p>
+        </div>
+        <pre>
+            <code>
+            .inline-parent {
+                text-align: center;
+            }
+            .inline-center {
+                display: inline-block;
+            }
+            </code>
+        </pre>
+    </div>
+
     <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
 </body>
 

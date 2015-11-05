@@ -21,6 +21,7 @@
         * [定位(Position)]()
         * [盒模型(BoxSize)]()
         * [清除浮动(Clearfix)]()
+            - [清除浮动的6种方法](https://segmentfault.com/a/1190000003937063?utm_source=Weibo&utm_medium=shareLink&utm_campaign=socialShare)
         * [水平居中]()
         * [垂直居中]()
         * [左右结构，流式布局]()

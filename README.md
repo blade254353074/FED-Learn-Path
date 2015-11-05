@@ -30,9 +30,8 @@
         * [input美化]()
         * [file upload按钮美化]()
         * [CSS选择器(CSS Selector)]()
-        * [模拟下拉菜单]()
         * [字符超出隐藏]()
-        * [背景图片尺寸(background-size)]()
+        * [背景图片尺寸(<!--  -->background-size)]()
         * [before & after 伪元素]()
             - [伪元素应用 - CSS3 Button](http://www.w3cplus.com/CSS3/css-buttons-with-pseudo-elements)
             - [CSS3实现 - 加载动画]()
@@ -53,6 +52,8 @@
         * [CSS3 Filter - 滤镜特效](http://www.w3cplus.com/css3/ten-effects-with-css3-filter)
         * [CSS3渐变]()
         * [FlexBox[图]](assets/imgs/flexboxsheet.png)
+        * [纯CSS下拉菜单]()
+        * [纯CSS选项卡]()
     + Sass 
         * [为什么要用CSS预编译工具]()
         * [SCSS语法]()
@@ -66,6 +67,10 @@
     
 ## JavaScript
 - 实例
+    + [模拟下拉菜单]()
+    + [选项卡]()
+    + [轮播图]()
+    + [模态框]()
     + 
 - 库
     + [jQuery](http://jquery.com/) (DOM操作、ajax、事件委托、自定义事件、js动画...)

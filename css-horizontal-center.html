@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
     <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
     <style type="text/css" media="screen">
+        body {
+            height: ;
+        }
         .container {
             width: 970px;
             margin: 0 auto;
@@ -22,6 +25,23 @@
         .inline-center {
             display: inline-block;
 
+        }
+        .absolute-parent {
+            position: relative;
+        }
+        .absolute-regular-center {
+            position: absolute;
+            left: 50%;
+            width: 540px;
+            height: 260px;
+            margin-left: -270px;
+        }
+        .absolute-center {
+            position: absolute;
+            left: 50%;
+            width: 540px;
+            height: 260px;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -46,18 +66,63 @@
         <div class="inline-parent">
             <div class="inline-center" style="border: 1px solid #e60">
                 <p>我是居中块</p>
+                <pre style="text-align: left;">
+                    <code>
+.inline-parent {
+    text-align: center;
+}
+.inline-center {
+    display: inline-block;
+}
+                    </code>
+                </pre>
             </div>
         </div>
-        <pre>
-            <code>
-            .inline-parent {
-                text-align: center;
-            }
-            .inline-center {
-                display: inline-block;
-            }
-            </code>
-        </pre>
+    </div>
+    <hr>
+    <h3 class="exp-title-sub">绝对定位元素，固定宽度，父级无法获取子元素高度</h3>
+    <div class="container" style="height: 260px;">
+        <div class="absolute-parent">
+            <div class="absolute-regular-center" style="border: 1px solid #e60">
+                <p>我是居中块</p>
+                <pre>
+                    <code>
+                .absolute-parent {
+                    position: relative;
+                }
+                .absolute-regular-center {
+                    position: absolute;
+                    left: 50%;
+                    width: 540px;
+                    height: 260px;
+                    margin-left: -270px;
+                }
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3 class="exp-title-sub">绝对定位元素，不固定宽度，父级无法获取子元素高度，只支持IE9以上浏览器</h3>
+    <div class="container" style="height: 260px;">
+        <div class="absolute-parent">
+            <div class="absolute-center" style="border: 1px solid #e60">
+                <p>我是居中块</p>
+                <pre>
+                    <code>
+                .absolute-parent {
+                    position: relative;
+                }
+                .absolute-center {
+                    position: absolute;
+                    left: 50%;
+                    height: 260px;
+                    transform: translateX(-50%);
+                }
+                    </code>
+                </pre>
+            </div>
+        </div>
     </div>
     <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
 </body>

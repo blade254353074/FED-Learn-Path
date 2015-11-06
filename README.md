@@ -66,20 +66,6 @@
     + 
     
 ## JavaScript
-- 实例
-    + 实例
-        * 选项卡
-        * 轮播图
-    + 代码片段
-        * [HTML转义]()
-        * [时间格式化]()
-        * [n小时前 - n天前]()
-        * [前端分页]()
-        * [jQuery插件模板]()
-        * [原生AJAX - xhr1 & xhr2]()
-        * [jQuery AJAX]()
-        * [Form & AJAX文件上传]()
-        * 
 - 库
     + [jQuery](http://jquery.com/) (DOM操作、ajax、事件委托、自定义事件、js动画...)
     + [Zeptojs](http://zeptojs.com/) (小型jQuery 9.1kb，移动端jQuery类库，语法相同)
@@ -104,6 +90,19 @@
     + [Vue.js](http://vuejs.org/)
         * [Vue论坛](http://forum.vuejs.org/)
     + [React](http://facebook.github.io/react/)
+- 实例
+    + 选项卡
+    + 轮播图
+- 代码片段
+    + [HTML转义]()
+    + [时间格式化]()
+    + [n小时前 - n天前]()
+    + [前端分页]()
+    + [jQuery插件模板]()
+    + [原生AJAX - xhr1 & xhr2]()
+    + [jQuery AJAX]()
+    + [Form & AJAX文件上传]()
+- js优化 & 编码技巧
 - 模块化
     + [为什么要模块化](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
     + CommonJS规范

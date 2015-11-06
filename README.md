@@ -1,7 +1,7 @@
 # FED-Learn-Path
 
 ## HTML
-- [HTML5模板]()
+- [HTML5模板](http://blade254353074.github.io/FED-Learn-Path/html-template.html)
 - HTML5标签
     + [详解HTML<head> 头标签元素的意义以及使用场景](http://www.58img.com/web/2220)
     + [标签语义化](http://www.w3school.com.cn/tags/index.asp)
@@ -22,7 +22,7 @@
         * [盒模型(BoxSize)]()
         * [清除浮动(Clearfix)]()
             - [清除浮动的6种方法](https://segmentfault.com/a/1190000003937063?utm_source=Weibo&utm_medium=shareLink&utm_campaign=socialShare)
-        * [水平居中]()
+        * [水平居中](http://blade254353074.github.io/FED-Learn-Path/css-horizontal-center.html)
         * [垂直居中]()
         * [左右结构，流式布局]()
         * [上下结构]()
@@ -67,7 +67,19 @@
     
 ## JavaScript
 - 实例
-    + 
+    + 实例
+        * 选项卡
+        * 轮播图
+    + 代码片段
+        * [HTML转义]()
+        * [时间格式化]()
+        * [n小时前 - n天前]()
+        * [前端分页]()
+        * [jQuery插件模板]()
+        * [原生AJAX - xhr1 & xhr2]()
+        * [jQuery AJAX]()
+        * [Form & AJAX文件上传]()
+        * 
 - 库
     + [jQuery](http://jquery.com/) (DOM操作、ajax、事件委托、自定义事件、js动画...)
     + [Zeptojs](http://zeptojs.com/) (小型jQuery 9.1kb，移动端jQuery类库，语法相同)

@@ -34,14 +34,14 @@
             position: absolute;
             left: 50%;
             width: 540px;
-            height: 260px;
+            height: 266px;
             margin-left: -270px;
         }
         .absolute-center {
             position: absolute;
             left: 50%;
             width: 540px;
-            height: 260px;
+            height: 266px;
             transform: translateX(-50%);
         }
     </style>
@@ -52,7 +52,7 @@
     <h3 class="exp-title-sub">固定宽度，块级元素</h3>
     <div class="container" style="border: 1px solid #e60">
         <p>我是居中块</p>
-        <pre>
+        <pre class="prettyprint">
             <code>
             .container {
                 width: 970px;
@@ -67,7 +67,7 @@
         <div class="inline-parent">
             <div class="inline-center" style="border: 1px solid #e60">
                 <p>我是居中块</p>
-                <pre style="text-align: left;">
+                <pre  class="prettyprint" style="text-align: left;">
                     <code>
 .inline-parent {
     text-align: center;
@@ -86,7 +86,7 @@
         <div class="absolute-parent">
             <div class="absolute-regular-center" style="border: 1px solid #e60">
                 <p>我是居中块</p>
-                <pre>
+                <pre class="prettyprint">
                     <code>
                 .absolute-parent {
                     position: relative;
@@ -119,19 +119,6 @@
                     height: 260px;
                     transform: translateX(-50%);
                 }
-                </pre>
-                <pre>
-                    <code>
-                .absolute-parent {
-                    position: relative;
-                }
-                .absolute-center {
-                    position: absolute;
-                    left: 50%;
-                    height: 260px;
-                    transform: translateX(-50%);
-                }
-                    </code>
                 </pre>
             </div>
         </div>

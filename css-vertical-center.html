@@ -14,51 +14,37 @@
     <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
 
     <style type="text/css" media="screen">
-        .container {
-            width: 970px;
-            margin: 0 auto;
-        }
-        .inline-parent {
-            text-align: center;
-        }
-        .inline-center {
-            display: inline-block;
-
-        }
-        .absolute-parent {
-            position: relative;
-        }
-        .absolute-regular-center {
-            position: absolute;
-            left: 50%;
-            width: 540px;
-            margin-left: -270px;
-        }
-        .absolute-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .inline-parent {
+        height: 100px;
+        line-height: 100px;
+    }
+    .inline-block {
+        display: inline-block;
+    }
     </style>
 </head>
 
 <body onload="prettyPrint()">
-    <h1 class="exp-title">CSS 水平居中</h1>
-    <h3 class="exp-title-sub">固定宽度，块级元素</h3>
-    <div class="container" style="border: 1px solid #e60">
-        <p>我是居中块</p>
-    </div>
-    <div class="container">
-        <pre class="prettyprint">
-            <code>
-            .container {
-                width: 970px;
-                margin: 0 auto;
+    <h1 class="exp-title">CSS 垂直居中</h1>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">行内块垂直居中</h3>
+        <div class="exp-col-half">
+            <div class="inline-parent">
+                <div class="inline-block" style="border: 1px solid #e60">我是行内块</div>
+            </div>
+        </div>
+        <div class="exp-col-half">
+            <pre class="prettyprint">
+            .inline-parent {
+                height: 100px;
+                line-height: 100px;
             }
-            </code>
-        </pre>
+            .inline-block {
+                display: inline-block;
+            }
+            </pre>
+        </div>
     </div>
-    <hr>
 
     <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
 </body>

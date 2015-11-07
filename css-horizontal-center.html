@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>CSS ˮƽ����</title>
+    <title>CSS 水平居中</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
@@ -14,38 +14,117 @@
     <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
 
     <style type="text/css" media="screen">
-    .inline-parent {
-        height: 100px;
-        line-height: 100px;
-    }
-    .inline-block {
-        display: inline-block;
-    }
+        .container {
+            width: 970px;
+            margin: 0 auto;
+        }
+        .inline-parent {
+            text-align: center;
+        }
+        .inline-center {
+            display: inline-block;
+
+        }
+        .absolute-parent {
+            position: relative;
+        }
+        .absolute-regular-center {
+            position: absolute;
+            left: 50%;
+            width: 540px;
+            margin-left: -270px;
+        }
+        .absolute-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     </style>
 </head>
 
 <body onload="prettyPrint()">
-    <h1 class="exp-title">CSS ��ֱ����</h1>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">���ڿ鴹ֱ����</h3>
-        <div class="exp-col-half">
-            <div class="inline-parent">
-                <div class="inline-block" style="border: 1px solid #e60">�������ڿ�</div>
+    <h1 class="exp-title">CSS 水平居中</h1>
+    <h3 class="exp-title-sub">固定宽度，块级元素</h3>
+    <div class="container" style="border: 1px solid #e60">
+        <p>我是居中块</p>
+    </div>
+    <div class="container">
+        <pre class="prettyprint">
+            <code>
+            .container {
+                width: 970px;
+                margin: 0 auto;
+            }
+            </code>
+        </pre>
+    </div>
+    <hr>
+    <h3 class="exp-title-sub">行内块元素，不固定宽度</h3>
+    <div class="container">
+        <div class="inline-parent">
+            <div class="inline-center" style="border: 1px solid #e60">
+                <p>我是居中块</p>
             </div>
         </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+    </div>
+    <div class="container">
+        <pre  class="prettyprint" style="text-align: left;">
+            <code>
             .inline-parent {
-                height: 100px;
-                line-height: 100px;
+                text-align: center;
             }
-            .inline-block {
+            .inline-center {
                 display: inline-block;
             }
-            </pre>
+            </code>
+        </pre>
+    </div>
+    <hr>
+    <h3 class="exp-title-sub">绝对定位元素，固定宽度，父级无法获取子元素高度</h3>
+    <div class="container" style="height: 60px;">
+        <div class="absolute-parent">
+            <div class="absolute-regular-center" style="border: 1px solid #e60">
+                <p>我是居中块</p>
+            </div>
         </div>
     </div>
-
+    <div class="container">
+        <pre class="prettyprint">
+            <code>
+            .absolute-parent {
+                position: relative;
+            }
+            .absolute-regular-center {
+                position: absolute;
+                left: 50%;
+                width: 540px;
+                height: 260px;
+                margin-left: -270px;
+            }
+            </code>
+        </pre>
+    </div>
+    <hr>
+    <h3 class="exp-title-sub">绝对定位元素，不固定宽度，父级无法获取子元素高度，只支持IE9以上浏览器</h3>
+    <div class="container" style="height: 60px;">
+        <div class="absolute-parent">
+            <div class="absolute-center" style="border: 1px solid #e60">
+                <p>我是居中块</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <pre class="prettyprint">
+        .absolute-parent {
+            position: relative;
+        }
+        .absolute-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        </pre>
+    </div>
     <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
 </body>
 

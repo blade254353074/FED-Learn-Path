@@ -21,6 +21,16 @@
     .inline-block {
         display: inline-block;
     }
+    .table {
+        display: table;
+        width: 280px;
+        height: 280px;
+        text-align: center;
+    }
+    .table-cell {
+        display: table-cell;
+        vertical-align: center;
+    }
     </style>
 </head>
 
@@ -34,15 +44,42 @@
             </div>
         </div>
         <div class="exp-col-half">
-            <pre class="prettyprint">
-            .inline-parent {
-                height: 100px;
-                line-height: 100px;
-            }
-            .inline-block {
-                display: inline-block;
-            }
-            </pre>
+        <pre class="prettyprint">
+        .inline-parent {
+            height: 100px;
+            line-height: 100px;
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        </pre>
+        </div>
+    </div>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">table垂直居中</h3>
+        <div class="exp-col-half">
+            <div class="table">
+                <div class="table-cell">
+                    <div style="border: 1px solid #e60">
+                        <p>非浮动，绝对定位元素</p>
+                        <p>不限长宽</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="exp-col-half">
+        <pre class="prettyprint">
+        .table {
+            display: table;
+            width: 280px;
+            height: 280px;
+            text-align: center;
+        }
+        .table-cell {
+            display: table-cell;
+            vertical-align: center;
+        }
+        </pre>
         </div>
     </div>
 

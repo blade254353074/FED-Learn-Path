@@ -42,6 +42,10 @@ exp-container:after {
     padding: 0 15px;
 }
 
+.exp-col-half > div {
+    margin: 10px 0;
+}
+
 @media (max-width: 970px) {
     .exp-container {
         width: 100%;

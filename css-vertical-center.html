@@ -59,9 +59,24 @@
         left: 50%;
         width: 200px;
         height: 200px;
-        margin: auto;
-        margin-top: -100px;
+        margin: -100px 0 0 -100px;
         overflow: auto;
+    }
+    .float-wrapper {
+        height: 300px;
+    }
+    .float-node {
+        height: 500px;
+        float: left;
+        height: 50%;
+        margin-bottom: -60px;
+    }
+    .float-center {
+        position: relative;
+        width: 140px;
+        height: 120px;
+        margin: 0 auto;
+        clear: both;
     }
     </style>
 </head>
@@ -122,29 +137,41 @@
     <div class="exp-container">
         <h3 class="exp-title-sub">float & clear 垂直居中</h3>
         <div class="exp-col-half">
-            <div class="absolute-wrapper" style="border: 1px solid #38D">
-                <div class="absolute-center2" style="background: #f5f4f3">
-                    <p>绝对定位元素</p>
+            <div class="float-wrapper" style="border: 1px solid #38D">
+                <div class="float-node"></div>
+                <div class="float-center" style="background: #f5f4f3">
+                    <p>浮动元素</p>
                     <p>定高</p>
                 </div>
             </div>
         </div>
         <div class="exp-col-half">
         <pre class="prettyprint">
-        .absolute-wrapper {
-            position: relative;
-            width: 100%;
-            height: 280px;
-        }
-        .absolute-center2 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 120px;
-            margin: -100px 0 0 -100px;
-            overflow: auto;
-        }
+    <!-- HTML -->
+    &lt;div class="float-wrapper" style="border: 1px solid #38D"&gt;
+        &lt;div class="float-node"&gt;&lt;/div&gt;
+        &lt;div class="float-center" style="background: #f5f4f3"&gt;
+            &lt;p&gt;浮动元素&lt;/p&gt;
+            &lt;p&gt;定高&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    <!-- CSS -->
+    .float-wrapper {
+        height: 300px;
+    }
+    .float-node {
+        height: 500px;
+        float: left;
+        height: 50%;
+        margin-bottom: -60px;
+    }
+    .float-center {
+        position: relative;
+        width: 140px;
+        height: 120px;
+        margin: 0 auto;
+        clear: both;
+    }
         </pre>
         </div>
     </div>
@@ -204,8 +231,7 @@
             top: 50%;
             width: 200px;
             height: 200px;
-            margin: auto;
-            margin-top: -100px;
+            margin: -100px 0 0 -100px;
             overflow: auto;
         }
         </pre>

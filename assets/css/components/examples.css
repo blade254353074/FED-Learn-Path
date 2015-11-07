@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+.clearfix:before,
+clearfix:after {
+    display: table;
+    content: '';
+}
+.clearfix:after {
+    clear: both;
+}
+
 .exp-title {
     padding: 20px 30px;
     margin-top: 0;
@@ -18,7 +27,17 @@
     margin: 0 auto;
 }
 
+.exp-container:before,
+exp-container:after {
+    display: table;
+    content: '';
+}
+.exp-container:after {
+    clear: both;
+}
+
 .exp-col-half {
+    float: left;
     width: 50%;
     padding: 0 15px;
 }

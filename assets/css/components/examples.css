@@ -5,7 +5,7 @@
 }
 
 .clearfix:before,
-clearfix:after {
+.clearfix:after {
     display: table;
     content: '';
 }
@@ -28,7 +28,7 @@ clearfix:after {
 }
 
 .exp-container:before,
-exp-container:after {
+.exp-container:after {
     display: table;
     content: '';
 }

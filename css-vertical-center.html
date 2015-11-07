@@ -23,13 +23,16 @@
     }
     .table {
         display: table;
-        width: 280px;
+        width: 100%;
         height: 280px;
         text-align: center;
     }
     .table-cell {
         display: table-cell;
         vertical-align: center;
+    }
+    .table-cell .content {
+        display: inline-block;
     }
     </style>
 </head>
@@ -39,7 +42,7 @@
     <div class="exp-container">
         <h3 class="exp-title-sub">行内块垂直居中</h3>
         <div class="exp-col-half">
-            <div class="inline-parent">
+            <div class="inline-parent" style="border: 1px solid #38D">
                 <div class="inline-block" style="border: 1px solid #e60">我是行内块</div>
             </div>
         </div>
@@ -58,9 +61,9 @@
     <div class="exp-container">
         <h3 class="exp-title-sub">table垂直居中</h3>
         <div class="exp-col-half">
-            <div class="table">
+            <div class="table" style="border: 1px solid #38D">
                 <div class="table-cell">
-                    <div style="border: 1px solid #e60">
+                    <div class="content" style="border: 1px solid #e60">
                         <p>非浮动，绝对定位元素</p>
                         <p>不限长宽</p>
                     </div>
@@ -71,13 +74,16 @@
         <pre class="prettyprint">
         .table {
             display: table;
-            width: 280px;
+            width: 100%;
             height: 280px;
             text-align: center;
         }
         .table-cell {
             display: table-cell;
-            vertical-align: center;
+            vertical-align: middle;
+        }
+        .table-cell .content {
+            display: inline-block;
         }
         </pre>
         </div>

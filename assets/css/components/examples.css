@@ -43,7 +43,7 @@ exp-container:after {
 }
 
 .exp-col-half > div {
-    margin: 10px 0;
+    margin: 1em 0;
 }
 
 @media (max-width: 970px) {

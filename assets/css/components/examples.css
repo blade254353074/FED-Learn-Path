@@ -72,11 +72,11 @@ body {
     .exp-col-half {
         width: 100%;
         padding: 0 10px;
-        margin: 15px 0;
     }
 }
 
 .exp-stage {
+    padding: 10px;
     margin: 1em 0;
     border: 1px solid #E1E1E8;
 }

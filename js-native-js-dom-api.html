@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>js DOM原生API</title>
+    <title>JavaScript DOM原生API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
@@ -16,18 +16,81 @@
 </head>
 
 <body onload="prettyPrint()">
-    <h1 class="exp-title">js DOM原生API</h1>
+    <h1 class="exp-title">JavaScript DOM原生API</h1>
     <div class="exp-container">
         <h3 class="exp-title-sub">创建元素 (Creating Elements)</h3>
         <div class="exp-col-half">
-            <button id="createElement">创建元素</button>
-            <pre class="console"></pre>
+            <div class="exp-stage">
+                <button id="createElement">创建元素</button>
+                <code class="console"></code>
+            </div>
         </div>
         <div class="exp-col-half">
         <pre class="prettyprint">
-        var div = document.createElement('div');
-        div.textContent = '233';
-        $(this).next('.console').html(div);
+    var div = document.createElement('div');
+    div.textContent = '233';
+        </pre>
+        </div>
+    </div>
+    <hr>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">元素前后插入 (Inserting Elements Before & After)</h3>
+        <div class="exp-col-half">
+            <div class="exp-stage">
+                <p>
+                    <button id="insertElementBefore">前插元素</button>
+                    <button id="insertElementAfter">后插元素</button>
+                </p>
+                <code class="console">
+                    <div id="insertElem1">
+                        &lt;div id="insertElem1"&gt;insertElem1&lt;/div&gt;
+                    </div>
+                    <div id="insertElem2">
+                        &lt;div id="insertElem2"&gt;insertElem2&lt;/div&gt;
+                    </div>
+                    <div id="insertElem3">
+                        &lt;div id="insertElem3"&gt;insertElem3&lt;/div&gt;
+                    </div>
+                </code>
+            </div>
+        </div>
+        <div class="exp-col-half">
+        <pre class="prettyprint">
+    // insertChildBefore
+    document.getElementById('insertElem2')
+        .insertAdjacentHTML('beforebegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
+    // insertChildAfter
+    document.getElementById('insertElem2')
+        .insertAdjacentHTML('afterend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');
+        </pre>
+        </div>
+    </div>
+    <hr>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">插入子元素 (Inserting Elements As Children)</h3>
+        <div class="exp-col-half">
+            <div class="exp-stage">
+                <p>
+                    <button id="insertChildBefore">向前插入子元素</button>
+                    <button id="insertChildAfter">向后插入子元素</button>
+                </p>
+                <code class="console">
+                    <div id="insertParent">
+                        <div id="oldChild">
+                            &lt;div id="oldChild"&gt;oldChild&lt;/div&gt;
+                        </div>
+                    </div>
+                </code>
+            </div>
+        </div>
+        <div class="exp-col-half">
+        <pre class="prettyprint">
+    // insertBefore
+    document.getElementById('parent')
+        .insertAdjacentHTML('afterbegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
+    // insertAfter
+    document.getElementById('insertElem2')
+        .insertAdjacentHTML('beforeend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');
         </pre>
         </div>
     </div>
@@ -37,11 +100,36 @@
     <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
     <script>
     $(function() {
+        // create element
         $('#createElement').on('click', function(event) {
             event.preventDefault();
             var div = document.createElement('div');
             div.textContent = '233';
             $(this).next('.console').html(div);
+        });
+        // insert before
+        $('#insertElementBefore').on('click', function(event) {
+            event.preventDefault();
+            document.getElementById('insertElem2')
+                .insertAdjacentHTML('beforebegin', '<div id="insertBefore">insertBefore</div>');
+        });
+        // insert after
+        $('#insertElementAfter').on('click', function(event) {
+            event.preventDefault();
+            document.getElementById('insertElem2')
+                .insertAdjacentHTML('afterend', '<div id="insertAfter">insertAfter</div>');
+        });
+        // insert child before
+        $('#insertChildBefore').on('click', function(event) {
+            event.preventDefault();
+            document.getElementById('insertParent')
+                .insertAdjacentHTML('afterbegin', '<div id="insertBefore">insertBefore</div>');
+        });
+        // insert child after
+        $('#insertChildAfter').on('click', function(event) {
+            event.preventDefault();
+            document.getElementById('insertParent')
+                .insertAdjacentHTML('beforeend', '<div id="insertAfter">insertAfter</div>');
         });
     });
     </script>

@@ -221,6 +221,75 @@ if (textElem.textContent) {
         </div>
     </div>
     <hr>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">
+            获取/添加/移除元素属性 (Getting/Adding/Removing Element Attributes)
+            <a href="http://www.cnblogs.com/fsjohnhuang/p/3840263.html" target="_blank" title="JS魔法堂：属性、特性，傻傻分不清楚">[详细]</a>
+        </h3>
+        <div class="exp-col-half">
+            <div class="exp-stage">
+                <p>
+                    <button id="getAttr">获取属性</button>
+                    <button id="setAttr">添加属性</button>
+                    <button id="removeAttr">移除属性</button>
+                </p>
+                <code class="console">
+                    <button id="attrBtn" role="button">我是个按钮</button>
+                    <p>
+                        &lt;button id="attrBtn" role="button"&gt;我是个按钮&lt;/button&gt;
+                    </p>
+                    <output id="attrOutput"></output>
+                </code>
+            </div>
+        </div>
+        <div class="exp-col-half">
+            <pre class="prettyprint">
+// getAttribute
+document.getElementById('attrBtn').getAttribute('role');
+// setAttribute
+document.getElementById('attrBtn').setAttribute('disabled', '');
+// removeAttribute
+document.getElementById('attrBtn').removeAttribute('disabled');</pre>
+        </div>
+    </div>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">
+            增加/更新元素的样式 (Adding/Updating Element Styles)</h3>
+        <div class="exp-col-half">
+            <div class="exp-stage">
+                <p>
+                    <button id="addStyle">增加样式</button>
+                    <button id="updateStyle">更新样式</button>
+                    <button id="removeStyle">移除样式</button>
+                    <button id="removeAllStyle">移除所有样式</button>
+                </p>
+                <code class="console">
+                    <span id="styleNode">我用双手，成就你的梦想</span>
+                    <br>
+                    <output id="styleOutput"></output>
+                </code>
+            </div>
+        </div>
+        <div class="exp-col-half">
+            <pre class="prettyprint">
+// addStyle
+document.getElementById('styleNode').style.color = '#39e';
+// updateStyle
+var styleNode = document.getElementById('styleNode');
+styleNode.style.display = 'inline-block';
+styleNode.style.padding = '6px 12px';
+styleNode.style.margin = '6px 12px';
+styleNode.style.border = '1px solid #369';
+styleNode.style.borderRadius = '3px';
+});
+// removeStyle
+document.getElementById('styleNode').style.color = '';
+});
+// removeAllStyle
+document.getElementById('styleNode').removeAttribute('style');</pre>
+        </div>
+    </div>
+    <hr>
 
 
     <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
@@ -293,6 +362,50 @@ if (textElem.textContent) {
             } else {
                 textElem.innerText = '<div>innerText</div>';
             }
+        });
+
+        // getAttr
+        $('#getAttr').on('click', function() {
+            document.getElementById('attrBtn').getAttribute('role');
+            $('#attrOutput').text('role="' + document.getElementById('attrBtn').getAttribute('role') + '"');
+        });
+        // setAttr
+        $('#setAttr').on('click', function() {
+            document.getElementById('attrBtn').setAttribute('disabled', '');
+            $('#attrOutput').text(document.getElementById('attrBtn').outerHTML);
+        });
+        // removeAttr
+        $('#removeAttr').on('click', function() {
+            document.getElementById('attrBtn').removeAttribute('disabled');
+            $('#attrOutput').text(document.getElementById('attrBtn').outerHTML);
+        });
+
+        // addStyle
+        $('#addStyle').on('click', function() {
+            document.getElementById('styleNode')
+                .style.color = '#39e';
+            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+        });
+        // updateStyle
+        $('#updateStyle').on('click', function() {
+            var styleNode = document.getElementById('styleNode');
+            styleNode.style.display = 'inline-block';
+            styleNode.style.padding = '6px 12px';
+            styleNode.style.margin = '6px 12px';
+            styleNode.style.border = '1px solid #369';
+            styleNode.style.borderRadius = '3px';
+            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+        });
+        // removeStyle
+        $('#removeStyle').on('click', function() {
+            document.getElementById('styleNode')
+                .style.color = '';
+            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+        });
+        // removeAllStyle
+        $('#removeAllStyle').on('click', function() {
+            document.getElementById('styleNode').removeAttribute('style');
+            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
         });
     });
     </script>

@@ -20,6 +20,14 @@ body {
     box-sizing: border-box;
 }
 
+button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 .clearfix:before,
 .clearfix:after {
     display: table;

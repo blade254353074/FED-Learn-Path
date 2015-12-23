@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript DOM原生API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+    <style type="text/css" media="screen">
+        .node-header {
+            padding: 10px;
+            border: 1px solid #e36;
+        }
+        .node-header h1 {
+            margin: 0;
+        }
+        .node-navbar {
+            float: left;
+        }
+        .node-navbar ul {
+            padding-left: 10px;
+        }
+        .node-navbar li {
+            float: left;
+            margin: 0 10px;
+            list-style-type: none;
+        }
+        .node-aside {
+            float: left;
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #39e;
+        }
+        .node-container {
+            margin-top: 15px;
+            outline: 1px solid #3c5;
+        }
+        .node-aside ul {
+            padding-left: 10px;
+            list-style-type: none;
+        }
+        .node-section {
+            padding: 10px 10px 0;
+            margin-left: 215px;
+            border: 1px solid #c2e;
+        }
+        .node-section article {
+            margin-bottom: 10px;
+            border: 1px solid #4cd;
+        }
+        .node-section h3 {
+            margin: 5px;
+        }
+        .node-footer {
+            margin-top: 10px;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+
+<body onload="prettyPrint()">
+    <h1 class="exp-title">JavaScript DOM节点API</h1>
+    <div class="exp-container">
+        <header class="node-header">
+            <h1>Header</h1>
+            <nav class="node-nav clearfix" role="navigation">
+                <ul class="node-navbar clearfix">
+                    <li><a href="#">链接1</a></li>
+                    <li><a href="#">链接2</a></li>
+                    <li><a href="#">链接3</a></li>
+                </ul>
+                <ul class="node-navbar clearfix" style="float:right">
+                    <li><a href="#">链接4</a></li>
+                    <li><a href="#">链接5</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="node-container clearfix">
+            <aside class="node-aside">
+                <ul>
+                    <li><a href="#">链接6</a></li>
+                    <li><a href="#">链接7</a></li>
+                    <li><a href="#">链接8</a></li>
+                    <li><a href="#">链接9</a></li>
+                    <li><a href="#">链接10</a></li>
+                </ul>
+            </aside>
+            <section class="node-section">
+                <article>
+                    <h3>title</h3>
+                    <div class="meta">
+                        <span class="author">作者: Blade</span>
+                        <time datetime="2015-11-11">时间：2015年11月11日</time>
+                    </div>
+                    <div>summary</div>
+                </article>
+                <article>
+                    <h3>title</h3>
+                    <div class="meta">
+                        <span class="author">作者: Blade</span>
+                        <time datetime="2015-11-11">时间：2015年11月11日</time>
+                    </div>
+                    <div>summary</div>
+                </article>
+                <article>
+                    <h3>title</h3>
+                    <div class="meta">
+                        <span class="author">作者: Blade</span>
+                        <time datetime="2015-11-11">时间：2015年11月11日</time>
+                    </div>
+                    <div>summary</div>
+                </article>
+            </section>
+        </div>
+        <footer class="node-footer">
+            <h2>Footer</h2>
+        </footer>
+    </div>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">创建元素 (Creating Elements)</h3>
+        <div class="exp-col-half">
+            <div class="exp-stage">
+                <button id="createElement">创建元素</button>
+                <code class="console"></code>
+            </div>
+        </div>
+        <div class="exp-col-half">
+            <pre class="prettyprint">
+var div = document.createElement('div');
+div.textContent = '233';</pre>
+        </div>
+    </div>
+    <hr>
+    <div class="exp-container">
+        <h3 class="exp-title-sub">元素前后插入 (Inserting Elements Before & After)</h3>
+        <div class="exp-col-half">
+            <div class="exp-stage">
+                <p>
+                    <button id="insertElementBefore">前插元素</button>
+                    <button id="insertElementAfter">后插元素</button>
+                </p>
+                <code class="console">
+                    <div id="insertElem1">
+                        &lt;div id="insertElem1"&gt;insertElem1&lt;/div&gt;
+                    </div>
+                    <div id="insertElem2">
+                        &lt;div id="insertElem2"&gt;insertElem2&lt;/div&gt;
+                    </div>
+                    <div id="insertElem3">
+                        &lt;div id="insertElem3"&gt;insertElem3&lt;/div&gt;
+                    </div>
+                </code>
+            </div>
+        </div>
+        <div class="exp-col-half">
+            <pre class="prettyprint">
+// insertChildBefore
+document.getElementById('insertElem2')
+    .insertAdjacentHTML('beforebegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
+// insertChildAfter
+document.getElementById('insertElem2')
+    .insertAdjacentHTML('afterend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');</pre>
+        </div>
+    </div>
+    <hr>
+
+    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
+    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+    <script>
+    $(function() {
+
+    });
+    </script>
+</body>
+
+</html>

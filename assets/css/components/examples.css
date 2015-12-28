@@ -81,6 +81,9 @@ button {
         width: 100%;
         padding: 0 10px;
     }
+    .exp-wrap {
+      padding: 0 10px;
+    }
 }
 
 .exp-stage {

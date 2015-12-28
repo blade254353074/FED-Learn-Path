@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <title>BFC(Block formatting context</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <style>
+    .container-BFC1 {
+      position: relative;
+      width: 300px;
+    }
+
+    .container-BFC1 .aside {
+      float: left;
+      width: 100px;
+      height: 150px;
+      background: #f66;
+    }
+
+    .container-BFC1 .main {
+      height: 200px;
+      background: #fcc;
+      overflow: hidden;
+    }
+
+    .container-BFC2 {
+      border: 5px solid #fcc;
+      overflow: hidden;
+    }
+
+    .container-BFC2 .child {
+      float: left;
+      border: 5px solid #f66;
+      width: 100px;
+      height: 100px;
+    }
+
+    .container-BFC3 .wrap {
+      overflow: hidden;
+    }
+
+    .container-BFC3 .child {
+      width: 200px;
+      height: 100px;
+      margin: 50px;
+      background: #fcc;
+    }
+  </style>
+</head>
+
+<body onload="prettyPrint()">
+  <h1 class="exp-title">BFC(Block formatting context)</h1>
+  <div class="exp-container">
+    <div class="exp-wrap">
+      <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">块格式化上下文(MDN)</a>
+      <p>BFC定义：</p>
+      <p>BFC(Block formatting context)直译为"块级格式化上下文"。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
+      <p>创建BFC的方式：</p>
+      <ul>
+        <li>根元素或其它包含它的元素</li>
+        <li>float 不为 none</li>
+        <li>position 为 absolute 或 fixed</li>
+        <li>display: inline-block, table-cell, table-caption, flex, inline-flex</li>
+        <li>overflow 的值不为 visible的元素</li>
+      </ul>
+      <p>BFC规则：</p>
+      <ul>
+        <li>内部的Box会在垂直方向，一个接一个地放置。</li>
+        <li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</li>
+        <li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
+        <li>BFC的区域不会与float box重叠。</li>
+        <li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
+        <li>计算BFC的高度时，浮动元素也参与计算</li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">自适应两栏布局</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="container-BFC1">
+          <div class="aside"></div>
+          <div class="main">BFC的区域不会与float box重叠。</div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.container-BFC1 {
+  position: relative;
+  width: 300px;
+}
+
+.container-BFC1 .aside {
+  float: left;
+  width: 100px;
+  height: 150px;
+  background: #f66;
+}
+
+.container-BFC1 .main {
+  height: 200px;
+  background: #fcc;
+  overflow: hidden;
+}</pre>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">清除内部浮动</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="container-BFC2">
+          <div class="child"></div>
+          <div class="child"></div>
+          计算BFC的高度时，浮动元素也参与计算
+        </div>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.container-BFC2 {
+  border: 5px solid #fcc;
+  overflow: hidden;
+}
+
+.container-BFC2 .child {
+  float: left;
+  border: 5px solid #f66;
+  width: 100px;
+  height: 100px;
+}</pre>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">防止垂直 margin 重叠</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="container-BFC3">
+          <p>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</p>
+          <div class="child"></div>
+          <div class="wrap">
+            <div class="child"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.container-BFC3 .wrap {
+  overflow: hidden;
+  /* child外面包裹一层容器，
+    并触发该容器生成一个BFC。
+    那么两个child便不属于同一个BFC，
+    就不会发生margin重叠了。*/
+}
+
+.container-BFC3 .child {
+  width: 200px;
+  height: 100px;
+  margin: 50px;
+  background: #fcc;
+}</pre>
+    </div>
+  </div>
+  <hr>
+
+
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>

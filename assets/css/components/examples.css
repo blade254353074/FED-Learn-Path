@@ -28,6 +28,15 @@ button {
   user-select: none;
 }
 
+a, a:visited {
+  color: #2A76F0;
+  text-decoration: none;
+}
+
+a:focus, a:active {
+  color: #268BD2;
+}
+
 .clearfix:before,
 .clearfix:after {
     display: table;

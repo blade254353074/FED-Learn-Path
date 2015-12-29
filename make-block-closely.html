@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <title>如何消除块之间的神秘空白</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <style>
+  .child {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #f25757;
+    background: #fa878e;
+  }
+
+  .parent1 {
+    overflow: hidden;
+  }
+
+  .parent1 .child {
+    float: left;
+  }
+
+  .parent2 {
+    font-size: 0;
+  }
+
+  .parent2 .child {
+    display: inline-block;
+    font-size: 14px;
+    overflow: hidden;
+  }
+
+  .parent3 .child {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .parent4 .child {
+    display: table-cell;
+  }
+
+  .parent5 {
+    display: flex;
+  }
+  </style>
+</head>
+
+<body onload="prettyPrint()">
+  <h1 class="exp-title">如何消除块之间的神秘空白</h1>
+  <div class="exp-container">
+    <div class="exp-wrap">
+      <p>inline-block块之间有空隙的原因是：html源码中块之间存在空白符(换行符、空格、缩进)</p>
+      <p>html中多个空白符在浏览器中只占一个空白符的大小<br>
+        空白符：|           |(←这里有很多个空格)<br>
+        要想使多个空格生效需要用&amp;nbsp;和空格分隔：| &nbsp; &nbsp; |(←这里有很多个空格)<br>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">float + 清除浮动</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="parent1">
+          <div class="child">233</div>
+          <div class="child"></div>
+          <div class="child"></div>
+        </div>
+        <p>优点：简单</p>
+        <p>缺点：需要清除浮动，float会有坑</p>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.parent1 {
+  overflow: hidden;
+}
+
+.parent1 .child {
+  float: left;
+}</pre>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">inline-block + font-size: 0;</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="parent2">
+          <div class="child">233</div>
+          <div class="child"></div>
+          <div class="child"></div>
+        </div>
+        <p>优点：兼容性好，破坏性小</p>
+        <p>缺点：子元素需要将fontSize重置</p>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.parent2 {
+  font-size: 0;
+}
+.parent2 .child {
+  display: inline-block;
+  font-size: 14px;
+  overflow: hidden;
+}</pre>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">inline-block + 源码去换行</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="parent3">
+          <div class="child">233</div><div class="child"></div><div class="child"></div>
+        </div>
+        <p>源码去换行可以使用gulp-htmlmin<br>
+          模板文件可以使用gulp-freemarker/gulp-handlebars/gulp-ejs...</p>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.parent3 .child {
+  display: inline-block;
+  overflow: hidden;
+}</pre>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">table-cell</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="parent4">
+          <div class="child">233</div><div class="child"></div><div class="child"></div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.parent4 .child {
+  display: table-cell;
+}</pre>
+    </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">父元素display: flex;</h3>
+    <div class="exp-col-half">
+      <div class="exp-stage">
+        <div class="parent5">
+          <div class="child">233</div><div class="child"></div><div class="child"></div>
+        </div>
+        <p>兼容性差</p>
+      </div>
+    </div>
+    <div class="exp-col-half">
+      <pre class="prettyprint">
+.parent5 {
+  display: flex;
+}</pre>
+    </div>
+  </div>
+
+
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>

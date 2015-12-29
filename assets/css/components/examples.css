@@ -28,6 +28,10 @@ button {
   user-select: none;
 }
 
+a:link:before {
+  content: "-";
+}
+
 a:link[target=_blank] {
   cursor: alias;
 }

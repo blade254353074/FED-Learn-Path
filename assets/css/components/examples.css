@@ -28,13 +28,18 @@ button {
   user-select: none;
 }
 
+a:link[target=_blank] {
+  cursor: alias;
+}
+
 a, a:visited {
   color: #2A76F0;
   text-decoration: none;
 }
 
-a:focus, a:active {
+a:hover, a:focus, a:active {
   color: #268BD2;
+  text-decoration: underline;
 }
 
 .clearfix:before,

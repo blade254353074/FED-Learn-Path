@@ -28,12 +28,12 @@ button {
   user-select: none;
 }
 
-a:link:before {
-  content: "-";
-}
-
 a:link[target=_blank] {
   cursor: alias;
+}
+
+a:link[target=_blank]:before {
+  content: "• ";
 }
 
 a, a:visited {

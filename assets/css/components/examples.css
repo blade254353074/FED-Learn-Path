@@ -115,3 +115,7 @@ a:active {
   margin: 1em 0;
   border: 1px solid #E1E1E8;
 }
+
+.exp-stage img {
+  width: 100%;
+}

@@ -66,8 +66,7 @@ a:active {
 }
 
 .exp-title-sub:before {
-  content: "•";
-  margin-left: -20px;
+  content: "• ";
 }
 
 .exp-container {
@@ -111,10 +110,6 @@ a:active {
   }
   .exp-title-sub {
     padding-left: 10px;
-  }
-  .exp-title-sub:before {
-    content: "•";
-    margin-left: -5px;
   }
 }
 

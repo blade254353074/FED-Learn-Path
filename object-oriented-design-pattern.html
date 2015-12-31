@@ -152,6 +152,14 @@ person1.sayName(); // "x"
 var person2 = new Person();
 
 person1.sayName === person2.sayName; // true</pre>
+      <p>与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。</p>
+      <ol>
+        <li>
+          <h4>理解原型对象</h4>
+          <p>创建一个新函数，该函数会有一个 prototype 属性指向函数的原型对象。原型对象会呦一个 constractor（构造函数）属性，这个属性包含一个指向 prototype 属性所在函数的指针。</p>
+          <p>例如 Person.protoype.constructor 指向 Person。而通过这个构造函数，我们还可继续为原型对象添加其他属性和方法。</p>
+        </li>
+      </ol>
     </div>
   </div>
 

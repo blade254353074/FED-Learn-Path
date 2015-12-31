@@ -54,7 +54,8 @@
 pre.prettyprint {
   background-color: #fdf6e3;
   padding: 10px;
-  border: 1px solid #E1E1E8; }
+  border: 1px solid #E1E1E8;
+  -webkit-overflow-scrolling : touch; }
 
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums {

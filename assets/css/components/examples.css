@@ -62,7 +62,7 @@ a:active {
 }
 
 .exp-title-sub {
-  padding-left: 40px;
+  font-size: 1.2em;
 }
 
 .exp-title-sub:before {
@@ -107,9 +107,6 @@ a:active {
   }
   .exp-wrap {
     padding: 0 10px;
-  }
-  .exp-title-sub {
-    padding-left: 10px;
   }
 }
 

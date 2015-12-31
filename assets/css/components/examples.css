@@ -32,10 +32,6 @@ a:link[target=_blank] {
   cursor: alias;
 }
 
-a:link[target=_blank]:before {
-  content: "• ";
-}
-
 a, a:visited {
   color: #2A76F0;
   text-decoration: none;

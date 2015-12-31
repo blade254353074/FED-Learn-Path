@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript面向对象-设计模式</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <style>
+
+  </style>
+</head>
+
+<body onload="prettyPrint()">
+  <h1 class="exp-title">JavaScript面向对象-设计模式</h1>
+  <div class="exp-container">
+    <div class="exp-wrap">
+      <p>本页内容根据《JavaScript高级程序设计（第3版）》精炼而成</p>
+      <p>虽然Object构造函数或对象字面量都可以用来创建单个对象，但这写方式有个明显的缺点：使用同一个接创建很多对象，会产生大量的重复代码。为解决这个问题，人们开始使用工厂模式的一种变体。</p>
+      <ul>
+        <li>工厂模式</li>
+        <li>构造函数模式</li>
+        <li>原型模式</li>
+        <li>组合使用构造函数模式和原型模式</li>
+        <li>动态原型模式</li>
+        <li>寄生构造函数模式</li>
+        <li>稳妥构造函数模式</li>
+      </ul>
+    </div>
+  </div>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">工厂模式</h3>
+    <div class="exp-stage">
+      <p>工厂模式抽象了创建具体对象的过程。考虑到 ES6- 中无法创建类，开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。</p>
+      <pre class="prettyprint">
+function createPerson(name, age, job) {
+  var o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function() {
+    alert(this.name);
+  };
+  return o;
+}
+var person1 = createPerson('a', 22, 'F2E');
+var person2 = createPerson('b', 20, 'PM');</pre>
+      <p>调用createPerson()，返回包含3个属性1个方法的对象</p>
+      <p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题（即怎样知道一个对象的类型）。随着 JavaScript 的发展，又一个新的模式出现了。</p>
+    </div>
+  </div>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">构造函数模式</h3>
+    <div class="exp-stage">
+      <p>ES中的构造函数可用来创建特定类型的对象。像 Object 和 Array 这样的原生构造函数，在运行时会自动出现在执行环境中。此外，也可以创建自定义的构造函数，从而定义自定义对象类型的属性和方法。例如，可以使用构造函数模式将前面的例子重写如下：</p>
+      <pre class="prettyprint">
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function() {
+    alert(this.name);
+  };
+}
+var person1 = new Person('a', 22, 'F2E');
+var person2 = new Person('b', 20, 'PM');</pre>
+      <p>特点：</p>
+      <ul>
+        <li>没有显式地创建对象</li>
+        <li>直接将属性和方法赋给了this对象</li>
+        <li>没有 return 语句</li>
+      </ul>
+      <p>按照惯例，构造函数始终都应该以一个大写字母开头，而非构造函数则应该以一个小写字母开头。</p>
+      <p>创建 Person 的新示例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下4个步骤：</p>
+      <ol>
+        <li>创建一个新的对象</li>
+        <li>将构造函数的作用域赋给新对象</li>
+        <li>执行构造函数中的代码（为这个新对象添加属性）</li>
+        <li>返回新的对象</li>
+      </ol>
+      <pre class="prettyprint">
+// 新创建的对象有一个 constructor （构造函数）属性，该属性指向 Person
+person1.constructor === Person; // true
+person2.constructor === Person; // true
+// 对象的 constructor 属性最初使用来标识对象类型的。
+// 但是，检测对象类型，还是 instanceof 操作符更可靠一些。
+// 新创建的对象既是 Object 的示例，同时也是 Person 的实例
+person1 instanceof Object; // true
+person1 instanceof Person; // true</pre>
+      <p>创建自定义的构造函数意味着将来可以<strong>将它的实例标识为一种特定的类型</strong>；这正是构造函数模式胜过工厂模式的地方。</p>
+      <ol>
+        <li>
+          <h4>将构造函数当作函数</h4>
+          <p>任何函数，只要通过 new 操作符来调用，那他就可以作为构造函数；而任何函数，如果不通过 new 操作符来调用，那它跟普通函数也不会有什么两样</p>
+          <pre class="prettyprint">
+// 当作构造函数使用
+var person = new Person('a', 22, 'F2E');
+person.sayName(); // "a"
+// 作为普通函数调用
+Person('b', 20, 'PM'); // 函数中的 this === window
+window.sayName(); // "b"
+// 在另一个对象的作用域中调用
+var o = new Object();
+Person.call(o, 'c', 23, 'CEO');
+o.sayName(); // "c"</pre>
+        </li>
+        <li>
+          <h4>构造函数的问题</h4>
+          <p>构造函数的主要问题，就是每个方法就要在每个实例上重新创建一遍。在前面的例子中，person1 和 person2 都有一个名为 sayName() 的方法，但那辆个方法不是同一个 Function 的实例。</p>
+          <p>也就是说 person1.sayName 与 person2.sayName 是两个不同的 Function 实例。然而，创建两个作用相同的实例没有必要，况且有 this 对象在，根本不用在执行代码前就把函数绑定到特定对象上面。</p>
+          <p>因此，可以像下面这样，通过把函数定义转移到构造函数外部来解决这个问题。</p>
+          <pre class="prettyprint">
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = sayName;
+}
+
+function sayName() {
+  alert(this.name);
+}
+var person1 = new Person('a', 22, 'F2E');
+var person2 = new Person('b', 20, 'PM');</pre>
+          <p>如果对象需要定义很多方法，那么就要定义很多个全局函数，于是我们这个自定义的引用类型就丝毫没有封装性可言了。好在，这些问题可以通过使用原型模式来解决。</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="exp-container">
+    <h3 class="exp-title-sub">原型模式</h3>
+    <div class="exp-stage">
+      <p>每个函数都有一个 prototype （原型）属性，这个属性是一个指针，指向一个对象，这个对象的属性和方法可以由所有对象实例共享。</p>
+      <p>换句话说，不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中：</p>
+      <pre class="prettyprint">
+function Person() {}
+Person.prototype.name = 'x';
+Person.prototype.age = 22;
+Person.prototype.job = 'CEO';
+Person.prototype.sayName = function() {
+  alert(this.name);
+};
+
+var person1 = new Person();
+person1.sayName(); // "x"
+var person2 = new Person();
+
+person1.sayName === person2.sayName; // true</pre>
+    </div>
+  </div>
+
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+</body>
+
+</html>

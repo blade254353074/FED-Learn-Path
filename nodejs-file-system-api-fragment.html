@@ -32,7 +32,7 @@
 var fs = require('fs');
 fs,readFile('path/to/file', 'utf8', function(err, data) {
   if (err) throw err;
-  console.log(data);
+  console.log(data.toString('utf8'));
   // data 为 Buffer
   // eg: &lt;Buffer 65 6d 61 69 6c 20 3d 0a&gt;
 })</pre>

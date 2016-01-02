@@ -96,6 +96,9 @@ a:active {
 }
 
 @media (max-width: 970px) {
+  ul, ol {
+    padding-left: 1.5em;
+  }
   .exp-title {
     padding: 10px;
   }
@@ -119,4 +122,8 @@ a:active {
 
 .exp-stage img {
   width: 100%;
+}
+
+.exp-center {
+  text-align: center;
 }

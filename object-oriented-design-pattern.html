@@ -159,10 +159,8 @@ person1.sayName === person2.sayName; // true</pre>
           <p>创建一个新函数，该函数会有一个 prototype 属性指向函数的原型对象。原型对象会呦一个 constractor（构造函数）属性，这个属性包含一个指向 prototype 属性所在函数的指针。</p>
           <p>例如 Person.protoype.constructor 指向 Person。而通过这个构造函数，我们还可继续为原型对象添加其他属性和方法。</p>
           <p>创建了自定义的构造函数之后，其原型对象默认只会取得 constructor 属性：至于其他方法，则都是从 Object 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。ECMA-262第5版中管这个指针叫[[Prototype]]。虽然在脚本中没有标准的方式访问[[Prototype]]，但 FF、Safari 和 Chrome 在每个对象上都支持一个属性 __proto__。</p>
-          <p>
-            <a href="https://raw.githubusercontent.com/blade254353074/FED-Learn-Path/gh-pages/assets/imgs/prototype1.png" target="_blank"><img src="https://raw.githubusercontent.com/blade254353074/FED-Learn-Path/gh-pages/assets/imgs/prototype1.png"/></a>
-            各个对象之间的关系
-          </p>
+          <a href="https://raw.githubusercontent.com/blade254353074/FED-Learn-Path/gh-pages/assets/imgs/prototype1.png" target="_blank"><img src="https://raw.githubusercontent.com/blade254353074/FED-Learn-Path/gh-pages/assets/imgs/prototype1.png"/></a>
+          <p class="exp-center">各个对象之间的关系</p>
         </li>
       </ol>
     </div>

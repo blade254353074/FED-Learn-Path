@@ -45,6 +45,14 @@ a:active {
   text-decoration: underline;
 }
 
+ul, ol {
+  list-style-position: inside;
+}
+
+ul li, ol li {
+  margin-left: -1.5em;
+}
+
 .clearfix:before,
 .clearfix:after {
   display: table;

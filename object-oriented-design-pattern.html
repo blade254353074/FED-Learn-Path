@@ -181,7 +181,36 @@ var person2 = new Person();
 
 person1.name = 'b';
 person1.name; // "b" ——来自实例
-person2.name; // "x" ——来自原型</pre>
+person2.name; // "x" ——来自原型
+delete person1.name;
+person1.name; // "x" ——来自原型</pre>
+          <p>用 delete 操作符删除实例中的属性后，“屏蔽”也就消失了，再访问该属性时就是原型中的值了。</p>
+          <p>Object 的 hasOwnProperty() 方法可以检测一个属性是存在于实例中，还是原型中。这个方法只在给定属性存在于对象实例中，才会返回 true 。</p>
+          <pre class="prettyprint">
+var person1 = new Person();
+var person2 = new Person();
+
+person1.hasOwnProperty('name'); // false 即属性来自原型
+person1.name = 'b'; // 创建实例属性
+person1.hasOwnProperty('name'); // true 即属性来自实例</pre>
+        </li>
+        <li>
+          <h4>原型与 in 操作符</h4>
+          <p> in 操作符有两种用法：for-in循环，单独使用。单独使用时，'name' in object 可以访问到属性时返回 true ，无论属性存在于实例还是原型中。</p>
+          <p>利用 in 和 hasOwnProperty() 方法，可以确定该属性是否存在于原型中：</p>
+          <pre class="prettyprint">
+// 检测属性是否是来自于原型
+function hasPrototypeProperty(object, name) {
+  // 判断属性是否存在于对象实例中
+  // 存在则直接返回 false;
+  // 不存在，则再判断是否（原型中）可以访问到该属性
+  // 可访问到，返回 true,
+  return !object.hasOwnProperty(name) && (name in object);
+}
+var person = new Person();
+hasPrototypeProperty(person, 'name'); // true
+person.name = 'b';
+hasPrototypeProperty(person, 'name'); // false</pre>
         </li>
       </ol>
     </div>

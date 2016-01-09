@@ -212,6 +212,58 @@ hasPrototypeProperty(person, 'name'); // true
 person.name = 'b';
 hasPrototypeProperty(person, 'name'); // false</pre>
           <p>使用ES5的 Object.keys() 可取得对象上所有可枚举的实例属性，此方法接受一个对象参数，返回字符串数组。<br>使用ES5的 Object.getOwnPropertyNames() 可取得对象上所有的实例属性。</p>
+          <pre class="prettyprint">
+Object.keys(Person.prototype); // ["name", "age", "job", "sayName"]
+Object.getOwnPropertyNames(Person.prototype); // ["constructor", "name", "age", "job", "sayName"]</pre>
+        </li>
+        <li>
+          <h4>更简单的原型语法</h4>
+          <p>用一个包含所有属性和方法的对象字面量来重写整个原型对象：</p>
+          <pre class="prettyprint">
+function Person() {}
+Person.prototype = {
+  name: 'x',
+  age: 22,
+  job: 'F2E',
+  sayName: function() {
+    console.log(this.name);
+  }
+};
+
+// 这种方法，可以将 Person.prototype 设置为对象字面量形式创建的新对象。
+// 但是 constructor 属性不再指向 Person 了。
+// 此时的 constructor 指向新对象的 constructor 属性（Object构造函数）
+
+var friend = new Person();
+friend instanceof Object; // true
+friend instanceof Person; // true
+friend.constructor === Person; // false
+friend.constructor === Object; // true
+
+// 如果 constructor 属性很重要，可以像下面这样特意将它设置回适当的值。
+Person.prototype = {
+  constructor: Person, // [[Enumerable]]特性为 true，即可枚举
+  name: 'x',
+  age: 22,
+  job: 'F2E',
+  sayName: function() {
+    console.log(this.name);
+  }
+};
+// 可以用 defineProperty 来设置 constructor 为不可枚举
+Person.prototype = {
+  name: 'x',
+  age: 22,
+  job: 'F2E',
+  sayName: function() {
+    console.log(this.name);
+  }
+};
+Object.defineProperty(Person.prototype, 'constructor', {
+  enumerable: false,
+  value: Person
+})</pre>
+          <p></p>
         </li>
       </ol>
     </div>

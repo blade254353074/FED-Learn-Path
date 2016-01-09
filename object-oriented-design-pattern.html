@@ -24,17 +24,14 @@
       <p>本页内容根据《JavaScript高级程序设计（第3版）》精炼而成</p>
       <p>虽然Object构造函数或对象字面量都可以用来创建单个对象，但这写方式有个明显的缺点：使用同一个接创建很多对象，会产生大量的重复代码。为解决这个问题，人们开始使用工厂模式的一种变体。</p>
       <ul>
-        <li>工厂模式</li>
-        <li>构造函数模式</li>
-        <li>原型模式</li>
-        <li>组合使用构造函数模式和原型模式</li>
-        <li>动态原型模式</li>
-        <li>寄生构造函数模式</li>
-        <li>稳妥构造函数模式</li>
+        <li><a href="#factoryMode">工厂模式</a></li>
+        <li><a href="#constructorMode">构造函数模式</a></li>
+        <li><a href="#prototypeMode">原型模式</a></li>
+        <li><a href="#constructor_prototypeMixed">组合使用构造函数模式和原型模式</a></li>
       </ul>
     </div>
   </div>
-  <div class="exp-container">
+  <div id="factoryMode" class="exp-container">
     <h3 class="exp-title-sub">工厂模式</h3>
     <div class="exp-stage">
       <p>工厂模式抽象了创建具体对象的过程。考虑到 ES6- 中无法创建类，开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节。</p>
@@ -55,7 +52,7 @@ var person2 = createPerson('b', 20, 'PM');</pre>
       <p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题（即怎样知道一个对象的类型）。随着 JavaScript 的发展，又一个新的模式出现了。</p>
     </div>
   </div>
-  <div class="exp-container">
+  <div id="constructorMode" class="exp-container">
     <h3 class="exp-title-sub">构造函数模式</h3>
     <div class="exp-stage">
       <p>ES中的构造函数可用来创建特定类型的对象。像 Object 和 Array 这样的原生构造函数，在运行时会自动出现在执行环境中。此外，也可以创建自定义的构造函数，从而定义自定义对象类型的属性和方法。例如，可以使用构造函数模式将前面的例子重写如下：</p>
@@ -133,7 +130,7 @@ var person2 = new Person('b', 20, 'PM');</pre>
       </ol>
     </div>
   </div>
-  <div class="exp-container">
+  <div id="prototypeMode" class="exp-container">
     <h3 class="exp-title-sub">原型模式</h3>
     <div class="exp-stage">
       <p>每个函数都有一个 prototype（原型）属性，这个属性是一个指针，指向一个对象，这个对象的属性和方法可以由所有对象实例共享。</p>
@@ -265,10 +262,87 @@ Object.defineProperty(Person.prototype, 'constructor', {
 })</pre>
           <p></p>
         </li>
+        <li>
+          <h4>原型的动态性</h4>
+          <p>由于在原型中查找值的过程是一次搜索，因此我们对原型对象所做的任何修改都能够立即从实例中反映出来。</p>
+          <pre class="prettyprint">
+var friend = new Person();
+Person.prototype.sayHi = function() { console.log('hi'); };
+friend.sayHi(); // "hi"</pre>
+        </li>
+        <li>
+          <h4>原生对象的原型</h4>
+          <p>原型模式的重要性不仅体现在创建自定义类型方面，就连所有原生的引用类型，都是采用这种模式创建的。</p>
+          <p>所有原生引用类型（ Object, Array, String 等）都在其构造函数的原型上定义了方法。</p>
+          <pre class="prettyprint">
+typeof Array.prototype.sort; // "function"
+typeof String.prototype.substring; // "function"</pre>
+          <p>通过原生对象的原型，还可以定义新方法：</p>
+          <pre class="prettyprint">
+String.prototype.startsWith = function(text) {
+  return this.indexOf(text) === 0;
+};
+var msg = 'Hello world';
+msg.startsWith('Hello'); // true</pre>
+        </li>
+        <li>
+          <h4>原型对象的问题</h4>
+          <p>原型模式最大的问题是由其共享的本性所导致的。</p>
+          <p>原型中所有属性是被很多实例共享的，这种共享对于函数非常合适。对于那些包含基本值的属性倒也说的过去，毕竟通过在实例上添加一个同名属性，可以「隐藏」原型中的对应属性。然而，对于包含引用类型值的属性来说，问题就比较突出了：</p>
+          <pre class="prettyprint">
+function Person() {}
+
+Person.prototype = {
+  constructor: Person,
+  name: 'x',
+  age: 22,
+  job: 'F2E',
+  friends: ['w', 'y'],
+  sayName: function() { console.log(this.name); }
+};
+
+var person1 = new Person();
+var person2 = new Person();
+
+person1.friends.push('z');
+
+person1.friends; // ["w", "y", "z"]
+person2.friends; // ["w", "y", "z"]
+person1.friedns === person2.friends; // true</pre>
+          <p>Person 的两个实例中 friends 属性指向同一个数组，即所有的 Person 实例都会共享这个数组。但是，实例一般都是要有属于自己的属性的。而这个问题正是我们很少看到有人单独使用原型模式的原因所在。</p>
+        </li>
       </ol>
     </div>
   </div>
+  <div id="constructor_prototypeMixed" class="exp-container">
+    <h3 class="exp-title-sub">组合式用构造函数模式和原型模式</h3>
+    <div class="exp-stage">
+      <p>组合式用构造函数模式与原型模式，构造函数模式用于定义实例属性，而原型模式用于定义方法和共享属性。结果，每个实例对象都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度地节省了内存。另外，这种混合模式还支持向构造函数传递参数：</p>
+      <pre class="prettyprint">
+function Person(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.friends = ["a", "b"];
+}
+Person.prototype = {
+  constructor: Person,
+  sayName: function() {
+    console.log(this.name);
+  }
+};
 
+var person1 = new Person('x', 22, 'F2E');
+var person2 = new Person('y', 20, 'DBA');
+
+person1.friends.push('z');
+person1.friends; // ["a", "b", "z"]
+person2.friends; // ["a", "b"]
+person1.friends === person2.friends; // false
+person1.sayName === person2.sayName; // true</pre>
+      <p>这种构造函数与原型混合的模式，是前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。可以说，着使用来定义引用类型的一种默认模式。</p>
+    </div>
+  </div>
   <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
 </body>
 

@@ -194,8 +194,8 @@ classElem.className =
       <div class="exp-col-half">
           <div class="exp-stage">
               <p>
-                  <button id="changeHTML">changeHTML</button>
-                  <button id="changeText">changeText</button>
+                  <button id="innerHTML">innerHTML</button>
+                  <button id="textContent">textContent</button>
               </p>
               <code class="console">
                   <div id="textElement">
@@ -208,7 +208,7 @@ classElem.className =
           <pre class="prettyprint">
 // innerHTML
 document.getElementById('textElement').innerHTML = '&lt;div&gt;innerHTML&lt;/div&gt;';
-// Change Text
+// textContent
 var textElem = document.getElementById('textElement');
 // 修改text会自动HTML转义内容
 if (textElem.textContent) {
@@ -350,12 +350,12 @@ document.getElementById('styleNode').removeAttribute('style');</pre>
           classElem.className =
               classElem.className.replace(/class-foo/, '');
       });
-      // changeHTML
-      $('#changeHTML').on('click', function() {
+      // innerHTML
+      $('#innerHTML').on('click', function() {
           document.getElementById('textElement').innerHTML = '<div>innerHTML</div>';
       });
-      // innerHTML
-      $('#changeText').on('click', function() {
+      // textContent
+      $('#textContent').on('click', function() {
           var textElem = document.getElementById('textElement');
           if (textElem.textContent) {
               textElem.textContent = '<div>textContent</div>';

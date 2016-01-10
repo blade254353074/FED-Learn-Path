@@ -51,7 +51,7 @@
   createChildren.onclick = function() {
     var html = '';
     for (var i = 0; i < 10000; i++) {
-      html += '<li id="li' + i + '">li' + i + '</li>';
+      html += '&lt;li id="li' + i + '"&gt;li' + i + '&lt;/li&gt;';
     }
     ul.innerHTML  = html;
     html = null;

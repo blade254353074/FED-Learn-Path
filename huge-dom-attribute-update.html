@@ -41,56 +41,54 @@
       </div>
       <div class="exp-col-half">
           <pre class="prettyprint">
-(function() {
-  var ul = document.getElementById('huge');
-  var createChildren = document.getElementById('createChildren');
-  var updateChildren = document.getElementById('updateChildren');
-  var updateChildrenFor = document.getElementById('updateChildrenFor');
-  var consoleDOM = document.getElementById('console');
+var ul = document.getElementById('huge');
+var createChildren = document.getElementById('createChildren');
+var updateChildren = document.getElementById('updateChildren');
+var updateChildrenFor = document.getElementById('updateChildrenFor');
+var consoleDOM = document.getElementById('console');
 
-  createChildren.onclick = function() {
-    var html = '';
-    for (var i = 0; i < 10000; i++) {
-      html += '&lt;li id="li' + i + '"&gt;li' + i + '&lt;/li&gt;';
-    }
-    ul.innerHTML  = html;
-    html = null;
-  };
+createChildren.onclick = function() {
+  var html = '';
+  for (var i = 0; i < 10000; i++) {
+    html += '&lt;li id="li' + i + '"&gt;li' + i + '&lt;/li&gt;';
+  }
+  ul.innerHTML  = html;
+  html = null;
+};
 
-  // TODO: make better?
-  updateChildren.onclick = function() {
-    var start;
-    var end;
-    start = new Date().getTime();
+// TODO: make better?
+updateChildren.onclick = function() {
+  var start;
+  var end;
+  start = new Date().getTime();
 
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < ul.children.length; i++) {
-      fragment.appendChild(ul.children[i].cloneNode(true));
-    }
-    for (var j = 0; j < 1000; j++) {
-      fragment.children[j].className = 'checked';
-    }
-    ul.innerHTML = '';
-    ul.appendChild(fragment);
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < ul.children.length; i++) {
+    fragment.appendChild(ul.children[i].cloneNode(true));
+  }
+  for (var j = 0; j < 1000; j++) {
+    fragment.children[j].className = 'checked';
+  }
+  ul.innerHTML = '';
+  ul.appendChild(fragment);
 
-    end = new Date().getTime();
-    consoleDOM.textContent = (end - start)+"ms";
-  };
+  end = new Date().getTime();
+  consoleDOM.textContent = (end - start)+"ms";
+};
 
-  // 用 for 循环修改 class
-  updateChildrenFor.onclick = function() {
-    var start;
-    var end;
-    start = new Date().getTime();
+// 用 for 循环修改 class
+updateChildrenFor.onclick = function() {
+  var start;
+  var end;
+  start = new Date().getTime();
 
-    for (var j = 0; j < 1000; j++) {
-      ul.children[j].className = 'checked';
-    }
+  for (var j = 0; j < 1000; j++) {
+    ul.children[j].className = 'checked';
+  }
 
-    end = new Date().getTime();
-    consoleDOM.textContent = (end - start)+"ms";
-  };
-}());</pre>
+  end = new Date().getTime();
+  consoleDOM.textContent = (end - start)+"ms";
+};</pre>
       </div>
   </div>
 

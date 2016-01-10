@@ -2,106 +2,106 @@
 <html lang="zh-cmn-Hans">
 
 <head>
-    <meta charset="UTF-8">
-    <title>海量 DOM 属性修改</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
-    <style type="text/css" media="screen">
-    #huge {
-      padding: 0;
-      list-style-type: none;
-      cursor: default;
-    }
-    #huge li::before {
-      content: '❎';
-    }
-    #huge .checked::before {
-      content: '✅';
-    }
-    </style>
+  <meta charset="UTF-8">
+  <title>海量 DOM 属性修改</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <style type="text/css" media="screen">
+  #huge {
+    padding: 0;
+    list-style-type: none;
+    cursor: default;
+  }
+  #huge li::before {
+    content: '❎';
+  }
+  #huge .checked::before {
+    content: '✅';
+  }
+  </style>
 </head>
 
 <body onload="prettyPrint()">
-    <h1 class="exp-title">海量 DOM 属性修改</h1>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">更新一个ul节点下1000个li节点的某个属性</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <button id="createChildren">创建10000个li节点</button>
-                <button id="updateChildren">利用fragment修改前1000个节点</button>
-                <button id="updateChildrenFor">不使用fragment修改前1000个节点</button>
-                <code id="console"></code>
-                <ul id="huge"></ul>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  <h1 class="exp-title">海量 DOM 属性修改</h1>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">更新一个ul节点下1000个li节点的某个属性</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <button id="createChildren">创建10000个li节点</button>
+              <button id="updateChildren">利用fragment修改前1000个节点</button>
+              <button id="updateChildrenFor">不使用fragment修改前1000个节点</button>
+              <code id="console"></code>
+              <ul id="huge"></ul>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 var div = document.createElement('div');
 div.textContent = '233';</pre>
-        </div>
-    </div>
+      </div>
+  </div>
 
-    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
-    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
-    <script>
-    $(function() {
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+  <script>
+  $(function() {
 
-    });
-    (function() {
-      var ul = document.getElementById('huge');
-      var createChildren = document.getElementById('createChildren');
-      var updateChildren = document.getElementById('updateChildren');
-      var updateChildrenFor = document.getElementById('updateChildrenFor');
-      var consoleDOM = document.getElementById('console');
+  });
+  (function() {
+    var ul = document.getElementById('huge');
+    var createChildren = document.getElementById('createChildren');
+    var updateChildren = document.getElementById('updateChildren');
+    var updateChildrenFor = document.getElementById('updateChildrenFor');
+    var consoleDOM = document.getElementById('console');
 
-      createChildren.onclick = function() {
-        var html = '';
-        for (var i = 0; i < 10000; i++) {
-          html += '<li id="li' + i + '">li' + i + '</li>';
-        }
-        ul.innerHTML  = html;
-        html = null;
-      };
+    createChildren.onclick = function() {
+      var html = '';
+      for (var i = 0; i < 10000; i++) {
+        html += '<li id="li' + i + '">li' + i + '</li>';
+      }
+      ul.innerHTML  = html;
+      html = null;
+    };
 
-      updateChildren.onclick = function() {
-        var start;
-        var end;
-        start = new Date().getTime();
+    updateChildren.onclick = function() {
+      var start;
+      var end;
+      start = new Date().getTime();
 
-        var fragment = document.createDocumentFragment();
-        for (var i = 0; i < ul.children.length; i++) {
-          fragment.appendChild(ul.children[i].cloneNode(true));
-        }
-        for (var j = 0; j < 1000; j++) {
-          fragment.children[j].className = 'checked';
-        }
-        ul.innerHTML = '';
-        ul.appendChild(fragment);
+      var fragment = document.createDocumentFragment();
+      for (var i = 0; i < ul.children.length; i++) {
+        fragment.appendChild(ul.children[i].cloneNode(true));
+      }
+      for (var j = 0; j < 1000; j++) {
+        fragment.children[j].className = 'checked';
+      }
+      ul.innerHTML = '';
+      ul.appendChild(fragment);
 
-        end = new Date().getTime();
-        consoleDOM.textContent = (end - start)+"ms";
-      };
+      end = new Date().getTime();
+      consoleDOM.textContent = (end - start)+"ms";
+    };
 
-      updateChildrenFor.onclick = function() {
-        var start;
-        var end;
-        start = new Date().getTime();
+    updateChildrenFor.onclick = function() {
+      var start;
+      var end;
+      start = new Date().getTime();
 
-        for (var j = 0; j < 1000; j++) {
-          ul.children[j].className = 'checked';
-        }
+      for (var j = 0; j < 1000; j++) {
+        ul.children[j].className = 'checked';
+      }
 
-        end = new Date().getTime();
-        consoleDOM.textContent = (end - start)+"ms";
-      };
-    }());
-    </script>
+      end = new Date().getTime();
+      consoleDOM.textContent = (end - start)+"ms";
+    };
+  }());
+  </script>
 </body>
 
 </html>

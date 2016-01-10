@@ -2,276 +2,276 @@
 <html lang="zh-cmn-Hans">
 
 <head>
-    <meta charset="UTF-8">
-    <title>JavaScript DOM原生API</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <meta charset="UTF-8">
+  <title>JavaScript DOM原生API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
 </head>
 
 <body onload="prettyPrint()">
-    <h1 class="exp-title">JavaScript DOM原生API</h1>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">创建元素 (Creating Elements)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <button id="createElement">创建元素</button>
-                <code class="console"></code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  <h1 class="exp-title">JavaScript DOM原生API</h1>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">创建元素 (Creating Elements)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <button id="createElement">创建元素</button>
+              <code class="console"></code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 var div = document.createElement('div');
 div.textContent = '233';</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">元素前后插入 (Inserting Elements Before & After)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="insertElementBefore">前插元素</button>
-                    <button id="insertElementAfter">后插元素</button>
-                </p>
-                <code class="console">
-                    <div id="insertElem1">
-                        &lt;div id="insertElem1"&gt;insertElem1&lt;/div&gt;
-                    </div>
-                    <div id="insertElem2">
-                        &lt;div id="insertElem2"&gt;insertElem2&lt;/div&gt;
-                    </div>
-                    <div id="insertElem3">
-                        &lt;div id="insertElem3"&gt;insertElem3&lt;/div&gt;
-                    </div>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">元素前后插入 (Inserting Elements Before & After)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="insertElementBefore">前插元素</button>
+                  <button id="insertElementAfter">后插元素</button>
+              </p>
+              <code class="console">
+                  <div id="insertElem1">
+                      &lt;div id="insertElem1"&gt;insertElem1&lt;/div&gt;
+                  </div>
+                  <div id="insertElem2">
+                      &lt;div id="insertElem2"&gt;insertElem2&lt;/div&gt;
+                  </div>
+                  <div id="insertElem3">
+                      &lt;div id="insertElem3"&gt;insertElem3&lt;/div&gt;
+                  </div>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // insertChildBefore
 document.getElementById('insertElem2')
-    .insertAdjacentHTML('beforebegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
+  .insertAdjacentHTML('beforebegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
 // insertChildAfter
 document.getElementById('insertElem2')
-    .insertAdjacentHTML('afterend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">插入子元素 (Inserting Elements As Children)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="insertChildBefore">向前插入子元素</button>
-                    <button id="insertChildAfter">向后插入子元素</button>
-                </p>
-                <code class="console">
-                    <p>&lt;div id="insertParent"&gt;</p>
-                    <div id="insertParent">
-                        <div id="oldChild">
-                            &lt;div id="oldChild"&gt;oldChild&lt;/div&gt;
-                        </div>
-                    </div>
-                    <p>&lt;/div&gt;</p>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  .insertAdjacentHTML('afterend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">插入子元素 (Inserting Elements As Children)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="insertChildBefore">向前插入子元素</button>
+                  <button id="insertChildAfter">向后插入子元素</button>
+              </p>
+              <code class="console">
+                  <p>&lt;div id="insertParent"&gt;</p>
+                  <div id="insertParent">
+                      <div id="oldChild">
+                          &lt;div id="oldChild"&gt;oldChild&lt;/div&gt;
+                      </div>
+                  </div>
+                  <p>&lt;/div&gt;</p>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // insertBefore
 document.getElementById('parent')
-    .insertAdjacentHTML('afterbegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
+  .insertAdjacentHTML('afterbegin', '&lt;div id="insertBefore"&gt;insertBefore&lt;/div&gt;');
 // insertAfter
 document.getElementById('insertElem2')
-    .insertAdjacentHTML('beforeend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">移动元素 (Moving Elements)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="moveChildBefore">移动到第一个子元素</button>
-                    <button id="moveChildAfter">移动到最后一个子元素</button>
-                </p>
-                <code class="console">
-                    <p>&lt;div id="moveParent"&gt;</p>
-                    <div id="moveParent">
-                        <div id="moveFirst">
-                            &lt;div id="moveFirst"&gt;moveChild&lt;/div&gt;
-                        </div>
-                        <div>
-                            &lt;div&gt;moveChild&lt;/div&gt;
-                        </div>
-                        <div>
-                            &lt;div&gt;moveChild&lt;/div&gt;
-                        </div>
-                    </div>
-                    <p>&lt;/div&gt;</p>
-                    <div id="moveElement">
-                        &lt;div id="moveElement"&gt;被移动元素&lt;/div&gt;
-                    </div>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  .insertAdjacentHTML('beforeend', '&lt;div id="insertBefore"&gt;insertAfter&lt;/div&gt;');</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">移动元素 (Moving Elements)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="moveChildBefore">移动到第一个子元素</button>
+                  <button id="moveChildAfter">移动到最后一个子元素</button>
+              </p>
+              <code class="console">
+                  <p>&lt;div id="moveParent"&gt;</p>
+                  <div id="moveParent">
+                      <div id="moveFirst">
+                          &lt;div id="moveFirst"&gt;moveChild&lt;/div&gt;
+                      </div>
+                      <div>
+                          &lt;div&gt;moveChild&lt;/div&gt;
+                      </div>
+                      <div>
+                          &lt;div&gt;moveChild&lt;/div&gt;
+                      </div>
+                  </div>
+                  <p>&lt;/div&gt;</p>
+                  <div id="moveElement">
+                      &lt;div id="moveElement"&gt;被移动元素&lt;/div&gt;
+                  </div>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // movingBefore
 document.getElementById('moveParent')
-    .insertBefore(document.getElementById('moveElement'),
-        document.getElementById('moveFirst'));
+  .insertBefore(document.getElementById('moveElement'),
+      document.getElementById('moveFirst'));
 // movingAfter
 document.getElementById('moveParent')
-    .appendChild(document.getElementById('moveElement'));</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">移除元素 (Removing Elements)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="removingElement">移除元素</button>
-                </p>
-                <code class="console">
-                    <div id="removeElement">
-                        &lt;div id="removeElement"&gt;请不要移除我&lt;/div&gt;
-                    </div>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  .appendChild(document.getElementById('moveElement'));</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">移除元素 (Removing Elements)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="removingElement">移除元素</button>
+              </p>
+              <code class="console">
+                  <div id="removeElement">
+                      &lt;div id="removeElement"&gt;请不要移除我&lt;/div&gt;
+                  </div>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 var removeElem = document.getElementById('removeElement');
 removeElem.parentNode
-    .removeChild(removeElem);</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">
-            添加 & 移除类 (Adding & Removing Classes)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="addCSS">添加Class</button>
-                    <button id="removeCSS">移除Class</button>
-                </p>
-                <code class="console">
-                    <style>
-                    .class-foo {font-weight: 600;}
-                    </style>
-                    &lt;style&gt;
-                        .class-foo {font-weight: 600;}
-                    &lt;/style&gt;
-                    <div id="classElement">
-                        &lt;div id="classElement"&gt;样式在手，天下我有&lt;/div&gt;
-                    </div>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  .removeChild(removeElem);</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">
+          添加 & 移除类 (Adding & Removing Classes)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="addCSS">添加Class</button>
+                  <button id="removeCSS">移除Class</button>
+              </p>
+              <code class="console">
+                  <style>
+                  .class-foo {font-weight: 600;}
+                  </style>
+                  &lt;style&gt;
+                      .class-foo {font-weight: 600;}
+                  &lt;/style&gt;
+                  <div id="classElement">
+                      &lt;div id="classElement"&gt;样式在手，天下我有&lt;/div&gt;
+                  </div>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // Add Class
 document.getElementById('classElement').className += 'class-foo';
 // Remove Class
 var classElem = document.getElementById('classElement');
 classElem.className =
-    classElem.className.replace(/class-foo/, '');</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">
-            添加 & 修改文本内容 (Adding & Changing Text Content)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="changeHTML">changeHTML</button>
-                    <button id="changeText">changeText</button>
-                </p>
-                <code class="console">
-                    <div id="textElement">
-                        23333
-                    </div>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+  classElem.className.replace(/class-foo/, '');</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">
+          添加 & 修改文本内容 (Adding & Changing Text Content)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="changeHTML">changeHTML</button>
+                  <button id="changeText">changeText</button>
+              </p>
+              <code class="console">
+                  <div id="textElement">
+                      23333
+                  </div>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // innerHTML
 document.getElementById('textElement').innerHTML = '&lt;div&gt;innerHTML&lt;/div&gt;';
 // Change Text
 var textElem = document.getElementById('textElement');
 // 修改text会自动HTML转义内容
 if (textElem.textContent) {
-    // Need IE9+
-    textElem.textContent = '&lt;div&gt;textContent&lt;/div&gt;';
+  // Need IE9+
+  textElem.textContent = '&lt;div&gt;textContent&lt;/div&gt;';
 } else {
-    // Firefox not support
-    textElem.innerText = '&lt;div&gt;innerText&lt;/div&gt;';
+  // Firefox not support
+  textElem.innerText = '&lt;div&gt;innerText&lt;/div&gt;';
 }</pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">
-            获取/添加/移除元素属性 (Getting/Adding/Removing Element Attributes)
-            <a href="http://www.cnblogs.com/fsjohnhuang/p/3840263.html" target="_blank" title="JS魔法堂：属性、特性，傻傻分不清楚">[详细]</a>
-        </h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="getAttr">获取属性</button>
-                    <button id="setAttr">添加属性</button>
-                    <button id="removeAttr">移除属性</button>
-                </p>
-                <code class="console">
-                    <button id="attrBtn" role="button">我是个按钮</button>
-                    <p>
-                        &lt;button id="attrBtn" role="button"&gt;我是个按钮&lt;/button&gt;
-                    </p>
-                    <output id="attrOutput"></output>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">
+          获取/添加/移除元素属性 (Getting/Adding/Removing Element Attributes)
+          <a href="http://www.cnblogs.com/fsjohnhuang/p/3840263.html" target="_blank" title="JS魔法堂：属性、特性，傻傻分不清楚">[详细]</a>
+      </h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="getAttr">获取属性</button>
+                  <button id="setAttr">添加属性</button>
+                  <button id="removeAttr">移除属性</button>
+              </p>
+              <code class="console">
+                  <button id="attrBtn" role="button">我是个按钮</button>
+                  <p>
+                      &lt;button id="attrBtn" role="button"&gt;我是个按钮&lt;/button&gt;
+                  </p>
+                  <output id="attrOutput"></output>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // getAttribute
 document.getElementById('attrBtn').getAttribute('role');
 // setAttribute
 document.getElementById('attrBtn').setAttribute('disabled', '');
 // removeAttribute
 document.getElementById('attrBtn').removeAttribute('disabled');</pre>
-        </div>
-    </div>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">
-            增加/更新元素的样式 (Adding/Updating Element Styles)</h3>
-        <div class="exp-col-half">
-            <div class="exp-stage">
-                <p>
-                    <button id="addStyle">增加样式</button>
-                    <button id="updateStyle">更新样式</button>
-                    <button id="removeStyle">移除样式</button>
-                    <button id="removeAllStyle">移除所有样式</button>
-                </p>
-                <code class="console">
-                    <span id="styleNode">我用双手，成就你的梦想</span>
-                    <br>
-                    <output id="styleOutput"></output>
-                </code>
-            </div>
-        </div>
-        <div class="exp-col-half">
-            <pre class="prettyprint">
+      </div>
+  </div>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">
+          增加/更新元素的样式 (Adding/Updating Element Styles)</h3>
+      <div class="exp-col-half">
+          <div class="exp-stage">
+              <p>
+                  <button id="addStyle">增加样式</button>
+                  <button id="updateStyle">更新样式</button>
+                  <button id="removeStyle">移除样式</button>
+                  <button id="removeAllStyle">移除所有样式</button>
+              </p>
+              <code class="console">
+                  <span id="styleNode">我用双手，成就你的梦想</span>
+                  <br>
+                  <output id="styleOutput"></output>
+              </code>
+          </div>
+      </div>
+      <div class="exp-col-half">
+          <pre class="prettyprint">
 // addStyle
 document.getElementById('styleNode').style.color = '#39e';
 // updateStyle
@@ -287,128 +287,128 @@ document.getElementById('styleNode').style.color = '';
 });
 // removeAllStyle
 document.getElementById('styleNode').removeAttribute('style');</pre>
-        </div>
-    </div>
-    <hr>
+      </div>
+  </div>
+  <hr>
 
 
-    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
-    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
-    <script>
-    $(function() {
-        // create element
-        $('#createElement').on('click', function() {
-            var div = document.createElement('div');
-            div.textContent = '233';
-            $(this).next('.console').html(div);
-        });
-        // insert before
-        $('#insertElementBefore').on('click', function() {
-            document.getElementById('insertElem2')
-                .insertAdjacentHTML('beforebegin', '<div id="insertBefore">insertBefore</div>');
-        });
-        // insert after
-        $('#insertElementAfter').on('click', function() {
-            document.getElementById('insertElem2')
-                .insertAdjacentHTML('afterend', '<div id="insertAfter">insertAfter</div>');
-        });
-        // insert child before
-        $('#insertChildBefore').on('click', function() {
-            document.getElementById('insertParent')
-                .insertAdjacentHTML('afterbegin', '<div id="insertBefore">insertBefore</div>');
-        });
-        // insert child after
-        $('#insertChildAfter').on('click', function() {
-            document.getElementById('insertParent')
-                .insertAdjacentHTML('beforeend', '<div id="insertAfter">insertAfter</div>');
-        });
-        // moving elem before
-        $('#moveChildBefore').on('click', function() {
-            document.getElementById('moveParent')
-                .insertBefore(document.getElementById('moveElement'),
-                    document.getElementById('moveFirst'));
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/jQuery.js"></script>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+  <script>
+  $(function() {
+      // create element
+      $('#createElement').on('click', function() {
+          var div = document.createElement('div');
+          div.textContent = '233';
+          $(this).next('.console').html(div);
+      });
+      // insert before
+      $('#insertElementBefore').on('click', function() {
+          document.getElementById('insertElem2')
+              .insertAdjacentHTML('beforebegin', '<div id="insertBefore">insertBefore</div>');
+      });
+      // insert after
+      $('#insertElementAfter').on('click', function() {
+          document.getElementById('insertElem2')
+              .insertAdjacentHTML('afterend', '<div id="insertAfter">insertAfter</div>');
+      });
+      // insert child before
+      $('#insertChildBefore').on('click', function() {
+          document.getElementById('insertParent')
+              .insertAdjacentHTML('afterbegin', '<div id="insertBefore">insertBefore</div>');
+      });
+      // insert child after
+      $('#insertChildAfter').on('click', function() {
+          document.getElementById('insertParent')
+              .insertAdjacentHTML('beforeend', '<div id="insertAfter">insertAfter</div>');
+      });
+      // moving elem before
+      $('#moveChildBefore').on('click', function() {
+          document.getElementById('moveParent')
+              .insertBefore(document.getElementById('moveElement'),
+                  document.getElementById('moveFirst'));
 
-        });
-        // moving elem after
-        $('#moveChildAfter').on('click', function() {
-            document.getElementById('moveParent')
-                .appendChild(document.getElementById('moveElement'));
-        });
-        // removing elem
-        $('#removingElement').on('click', function() {
-            var removeElem = document.getElementById('removeElement');
-            removeElem.parentNode
-                .removeChild(removeElem);
-        });
-        // Add Class
-        $('#addCSS').on('click', function() {
-            document.getElementById('classElement').className += 'class-foo';
-        });
-        // Remove Class
-        $('#removeCSS').on('click', function() {
-            var classElem = document.getElementById('classElement');
-            classElem.className =
-                classElem.className.replace(/class-foo/, '');
-        });
-        // changeHTML
-        $('#changeHTML').on('click', function() {
-            document.getElementById('textElement').innerHTML = '<div>innerHTML</div>';
-        });
-        // innerHTML
-        $('#changeText').on('click', function() {
-            var textElem = document.getElementById('textElement');
-            if (textElem.textContent) {
-                textElem.textContent = '<div>textContent</div>';
-            } else {
-                textElem.innerText = '<div>innerText</div>';
-            }
-        });
+      });
+      // moving elem after
+      $('#moveChildAfter').on('click', function() {
+          document.getElementById('moveParent')
+              .appendChild(document.getElementById('moveElement'));
+      });
+      // removing elem
+      $('#removingElement').on('click', function() {
+          var removeElem = document.getElementById('removeElement');
+          removeElem.parentNode
+              .removeChild(removeElem);
+      });
+      // Add Class
+      $('#addCSS').on('click', function() {
+          document.getElementById('classElement').className += 'class-foo';
+      });
+      // Remove Class
+      $('#removeCSS').on('click', function() {
+          var classElem = document.getElementById('classElement');
+          classElem.className =
+              classElem.className.replace(/class-foo/, '');
+      });
+      // changeHTML
+      $('#changeHTML').on('click', function() {
+          document.getElementById('textElement').innerHTML = '<div>innerHTML</div>';
+      });
+      // innerHTML
+      $('#changeText').on('click', function() {
+          var textElem = document.getElementById('textElement');
+          if (textElem.textContent) {
+              textElem.textContent = '<div>textContent</div>';
+          } else {
+              textElem.innerText = '<div>innerText</div>';
+          }
+      });
 
-        // getAttr
-        $('#getAttr').on('click', function() {
-            document.getElementById('attrBtn').getAttribute('role');
-            $('#attrOutput').text('role="' + document.getElementById('attrBtn').getAttribute('role') + '"');
-        });
-        // setAttr
-        $('#setAttr').on('click', function() {
-            document.getElementById('attrBtn').setAttribute('disabled', '');
-            $('#attrOutput').text(document.getElementById('attrBtn').outerHTML);
-        });
-        // removeAttr
-        $('#removeAttr').on('click', function() {
-            document.getElementById('attrBtn').removeAttribute('disabled');
-            $('#attrOutput').text(document.getElementById('attrBtn').outerHTML);
-        });
+      // getAttr
+      $('#getAttr').on('click', function() {
+          document.getElementById('attrBtn').getAttribute('role');
+          $('#attrOutput').text('role="' + document.getElementById('attrBtn').getAttribute('role') + '"');
+      });
+      // setAttr
+      $('#setAttr').on('click', function() {
+          document.getElementById('attrBtn').setAttribute('disabled', '');
+          $('#attrOutput').text(document.getElementById('attrBtn').outerHTML);
+      });
+      // removeAttr
+      $('#removeAttr').on('click', function() {
+          document.getElementById('attrBtn').removeAttribute('disabled');
+          $('#attrOutput').text(document.getElementById('attrBtn').outerHTML);
+      });
 
-        // addStyle
-        $('#addStyle').on('click', function() {
-            document.getElementById('styleNode')
-                .style.color = '#39e';
-            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
-        });
-        // updateStyle
-        $('#updateStyle').on('click', function() {
-            var styleNode = document.getElementById('styleNode');
-            styleNode.style.display = 'inline-block';
-            styleNode.style.padding = '6px 12px';
-            styleNode.style.margin = '6px 12px';
-            styleNode.style.border = '1px solid #369';
-            styleNode.style.borderRadius = '3px';
-            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
-        });
-        // removeStyle
-        $('#removeStyle').on('click', function() {
-            document.getElementById('styleNode')
-                .style.color = '';
-            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
-        });
-        // removeAllStyle
-        $('#removeAllStyle').on('click', function() {
-            document.getElementById('styleNode').removeAttribute('style');
-            $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
-        });
-    });
-    </script>
+      // addStyle
+      $('#addStyle').on('click', function() {
+          document.getElementById('styleNode')
+              .style.color = '#39e';
+          $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+      });
+      // updateStyle
+      $('#updateStyle').on('click', function() {
+          var styleNode = document.getElementById('styleNode');
+          styleNode.style.display = 'inline-block';
+          styleNode.style.padding = '6px 12px';
+          styleNode.style.margin = '6px 12px';
+          styleNode.style.border = '1px solid #369';
+          styleNode.style.borderRadius = '3px';
+          $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+      });
+      // removeStyle
+      $('#removeStyle').on('click', function() {
+          document.getElementById('styleNode')
+              .style.color = '';
+          $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+      });
+      // removeAllStyle
+      $('#removeAllStyle').on('click', function() {
+          document.getElementById('styleNode').removeAttribute('style');
+          $('#styleOutput').text(document.getElementById('styleNode').outerHTML);
+      });
+  });
+  </script>
 </body>
 
 </html>

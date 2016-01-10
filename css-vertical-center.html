@@ -2,247 +2,242 @@
 <html lang="zh-cmn-Hans">
 
 <head>
-    <meta charset="UTF-8">
-    <title>CSS 水平居中</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
-    <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <meta charset="UTF-8">
+  <title>CSS 垂直居中</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
 
-    <style type="text/css" media="screen">
-    .inline-parent {
-        height: 100px;
-        line-height: 100px;
-        text-align: center;
-    }
-    .inline-block {
-        display: inline-block;
-    }
+  <style type="text/css" media="screen">
+  .inline-parent {
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+  }
+  .inline-block {
+      display: inline-block;
+  }
 
-    .table {
-        display: table;
-        width: 100%;
-        height: 280px;
-        text-align: center;
-    }
-    .table-cell {
-        display: table-cell;
-        vertical-align: middle;
-    }
-    .table-cell .content {
-        display: inline-block;
-    }
+  .table {
+      display: table;
+      width: 100%;
+      height: 280px;
+      text-align: center;
+  }
+  .table-cell {
+      display: table-cell;
+      vertical-align: middle;
+  }
+  .table-cell .content {
+      display: inline-block;
+  }
 
-    .absolute-wrapper {
-        position: relative;
-        width: 100%;
-        height: 280px;
-    }
-    .absolute-center {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: table;
-        width: 50%;
-        height: auto;
-        margin: auto;
-        overflow: auto;
-    }
-    .absolute-center2 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 200px;
-        height: 200px;
-        margin: -100px 0 0 -100px;
-        overflow: auto;
-    }
-    .float-wrapper {
-        height: 300px;
-    }
-    .float-node {
-        height: 500px;
-        float: left;
-        height: 50%;
-        margin-bottom: -60px;
-    }
-    .float-center {
-        position: relative;
-        width: 140px;
-        height: 120px;
-        margin: 0 auto;
-        clear: both;
-    }
-    </style>
+  .absolute-wrapper {
+      position: relative;
+      width: 100%;
+      height: 280px;
+  }
+  .absolute-center {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: table;
+      width: 50%;
+      height: auto;
+      margin: auto;
+      overflow: auto;
+  }
+  .absolute-center2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+      margin: -100px 0 0 -100px;
+      overflow: auto;
+  }
+  .float-wrapper {
+      height: 300px;
+  }
+  .float-node {
+      height: 500px;
+      float: left;
+      height: 50%;
+      margin-bottom: -60px;
+  }
+  .float-center {
+      position: relative;
+      width: 140px;
+      height: 120px;
+      margin: 0 auto;
+      clear: both;
+  }
+  </style>
 </head>
 
 <body onload="prettyPrint()">
-    <h1 class="exp-title">CSS 垂直居中</h1>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">行内块垂直居中</h3>
-        <div class="exp-col-half">
-            <div class="inline-parent" style="border: 1px solid #38D">
-                <div class="inline-block" style="background: #f5f4f3">我是行内块</div>
-            </div>
-        </div>
-        <div class="exp-col-half">
+  <h1 class="exp-title">CSS 垂直居中</h1>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">行内块垂直居中</h3>
+      <div class="exp-col-half">
+          <div class="inline-parent" style="border: 1px solid #38D">
+              <div class="inline-block" style="background: #f5f4f3">我是行内块</div>
+          </div>
+      </div>
+      <div class="exp-col-half">
+      <pre class="prettyprint">
+.inline-parent {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+.inline-block {
+    display: inline-block;
+}</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">table垂直居中</h3>
+      <div class="exp-col-half">
+          <div class="table" style="border: 1px solid #38D">
+              <div class="table-cell">
+                  <div class="content" style="background: #f5f4f3">
+                      <p>非浮动，绝对定位元素</p>
+                      <p>不限宽高</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="exp-col-half">
         <pre class="prettyprint">
-        .inline-parent {
-            height: 100px;
-            line-height: 100px;
-            text-align: center;
-        }
-        .inline-block {
-            display: inline-block;
-        }
-        </pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">table垂直居中</h3>
-        <div class="exp-col-half">
-            <div class="table" style="border: 1px solid #38D">
-                <div class="table-cell">
-                    <div class="content" style="background: #f5f4f3">
-                        <p>非浮动，绝对定位元素</p>
-                        <p>不限宽高</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="exp-col-half">
+.table {
+    display: table;
+    width: 100%;
+    height: 280px;
+    text-align: center;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.table-cell .content {
+    display: inline-block;
+}</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">float & clear 垂直居中</h3>
+      <div class="exp-col-half">
+          <div class="float-wrapper" style="border: 1px solid #38D">
+              <div class="float-node"></div>
+              <div class="float-center" style="background: #f5f4f3">
+                  <p>浮动元素</p>
+                  <p>定高</p>
+              </div>
+          </div>
+      </div>
+      <div class="exp-col-half">
         <pre class="prettyprint">
-        .table {
-            display: table;
-            width: 100%;
-            height: 280px;
-            text-align: center;
-        }
-        .table-cell {
-            display: table-cell;
-            vertical-align: middle;
-        }
-        .table-cell .content {
-            display: inline-block;
-        }
-        </pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">float & clear 垂直居中</h3>
-        <div class="exp-col-half">
-            <div class="float-wrapper" style="border: 1px solid #38D">
-                <div class="float-node"></div>
-                <div class="float-center" style="background: #f5f4f3">
-                    <p>浮动元素</p>
-                    <p>定高</p>
-                </div>
-            </div>
-        </div>
-        <div class="exp-col-half">
-        <pre class="prettyprint">
-    /** HTML **/
-    &lt;div class="float-wrapper" style="border: 1px solid #38D"&gt;
-        &lt;div class="float-node"&gt;&lt;/div&gt;
-        &lt;div class="float-center" style="background: #f5f4f3"&gt;
-            &lt;p&gt;浮动元素&lt;/p&gt;
-            &lt;p&gt;定高&lt;/p&gt;
-        &lt;/div&gt;
+/** HTML **/
+&lt;div class="float-wrapper" style="border: 1px solid #38D"&gt;
+    &lt;div class="float-node"&gt;&lt;/div&gt;
+    &lt;div class="float-center" style="background: #f5f4f3"&gt;
+        &lt;p&gt;浮动元素&lt;/p&gt;
+        &lt;p&gt;定高&lt;/p&gt;
     &lt;/div&gt;
-    /** CSS **/
-    &lt;style&gt;
-    .float-wrapper {
-        height: 300px;
-    }
-    .float-node {
-        height: 500px;
-        float: left;
-        height: 50%;
-        margin-bottom: -60px;
-    }
-    .float-center {
-        position: relative;
-        width: 140px;
-        height: 120px;
-        margin: 0 auto;
-        clear: both;
-    }
-    &lt;/style&gt;
-        </pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">absolute定位 垂直居中</h3>
-        <div class="exp-col-half">
-            <div class="absolute-wrapper" style="border: 1px solid #38D">
-                <div class="absolute-center" style="background: #f5f4f3">
-                    <p>绝对定位元素</p>
-                    <p>不限宽高</p>
-                </div>
-            </div>
-        </div>
-        <div class="exp-col-half">
+&lt;/div&gt;
+/** CSS **/
+&lt;style&gt;
+.float-wrapper {
+    height: 300px;
+}
+.float-node {
+    height: 500px;
+    float: left;
+    height: 50%;
+    margin-bottom: -60px;
+}
+.float-center {
+    position: relative;
+    width: 140px;
+    height: 120px;
+    margin: 0 auto;
+    clear: both;
+}
+&lt;/style&gt;</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">absolute定位 垂直居中</h3>
+      <div class="exp-col-half">
+          <div class="absolute-wrapper" style="border: 1px solid #38D">
+              <div class="absolute-center" style="background: #f5f4f3">
+                  <p>绝对定位元素</p>
+                  <p>不限宽高</p>
+              </div>
+          </div>
+      </div>
+      <div class="exp-col-half">
         <pre class="prettyprint">
-        .absolute-wrapper {
-            position: relative;
-            width: 100%;
-            height: 280px;
-        }
-        .absolute-center {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            display: table;
-            width: 50%;
-            height: auto;
-            margin: auto;
-            overflow: auto;
-        }
-        </pre>
-        </div>
-    </div>
-    <hr>
-    <div class="exp-container">
-        <h3 class="exp-title-sub">absolute定位 垂直居中2</h3>
-        <div class="exp-col-half">
-            <div class="absolute-wrapper" style="border: 1px solid #38D">
-                <div class="absolute-center2" style="background: #f5f4f3">
-                    <p>绝对定位元素</p>
-                    <p>定宽高</p>
-                </div>
-            </div>
-        </div>
-        <div class="exp-col-half">
+.absolute-wrapper {
+    position: relative;
+    width: 100%;
+    height: 280px;
+}
+.absolute-center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: table;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    overflow: auto;
+}</pre>
+      </div>
+  </div>
+  <hr>
+  <div class="exp-container">
+      <h3 class="exp-title-sub">absolute定位 垂直居中2</h3>
+      <div class="exp-col-half">
+          <div class="absolute-wrapper" style="border: 1px solid #38D">
+              <div class="absolute-center2" style="background: #f5f4f3">
+                  <p>绝对定位元素</p>
+                  <p>定宽高</p>
+              </div>
+          </div>
+      </div>
+      <div class="exp-col-half">
         <pre class="prettyprint">
-        .absolute-wrapper {
-            position: relative;
-            width: 100%;
-            height: 280px;
-        }
-        .absolute-center2 {
-            position: absolute;
-            top: 50%;
-            width: 200px;
-            height: 200px;
-            margin: -100px 0 0 -100px;
-            overflow: auto;
-        }
-        </pre>
-        </div>
-    </div>
+.absolute-wrapper {
+    position: relative;
+    width: 100%;
+    height: 280px;
+}
+.absolute-center2 {
+    position: absolute;
+    top: 50%;
+    width: 200px;
+    height: 200px;
+    margin: -100px 0 0 -100px;
+    overflow: auto;
+}</pre>
+      </div>
+  </div>
 
-    <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
 </body>
 
 </html>

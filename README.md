@@ -54,17 +54,17 @@
         * [CSS3 Filter - 滤镜特效](http://www.w3cplus.com/css3/ten-effects-with-css3-filter)
         * [CSS3渐变]()
         * [FlexBox[图]](assets/imgs/flexboxsheet.png)
-    + Sass 
+    + Sass
         * [为什么要用CSS预编译工具]()
         * [SCSS语法]()
 
 - UI框架
     + [Bootstrap](http://getbootstrap.com/)
     + [Semantic UI](http://www.semantic-ui.com/)
-    
+
 - 设计
-    + 
-    
+    +
+
 ## JavaScript
 - 库
     + [jQuery](http://jquery.com/) (DOM操作、ajax、事件委托、自定义事件、js动画...)
@@ -107,7 +107,7 @@
     + [为什么要模块化](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
     + CommonJS规范
         * [browserify](http://browserify.org/)
-        * [webpack](http://webpack.github.io/) (*不只*是个js打包工具)
+        * [webpack (*不只*是个js打包工具) ](http://webpack.github.io/) 
     + AMD规范
         * [RequireJS](http://www.requirejs.org/)
     + CMD规范
@@ -145,7 +145,7 @@
 
 ## 开发工具
 - 编辑器
-    + Sublime Text3 
+    + Sublime Text3
         * [Sublime Text快捷键[图]](assets/imgs/sublime-text-3-cheat-sheet-wallpaper-large.jpg)
         * [Sublime Text 3解放鼠标的快捷键总结](http://www.tuicool.com/articles/INRjai)
         * [动图展示16个Sublime Text快捷键用法](http://www.techug.com/16-subline-text-tips)

@@ -15,3 +15,14 @@
   + [JavaScript面向对象-设计模式](http://blade254353074.github.io/FED-Learn-Path/object-oriented-design-pattern.html)
 - NodeJS
   + [Node.js 文件系统(fs) API代码片段](http://blade254353074.github.io/FED-Learn-Path/nodejs-file-system-api-fragment.html)
+
+```flow
+st=>start: 开始
+e=>end: 结束
+op=>operation: 我的操作
+cond=>condition: 确认？
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```

@@ -26,6 +26,7 @@
         <li><a href="#Promise静态方法">Promise静态方法</a></li>
         <li><a href="#Promise_chain">Promise方法链</a></li>
         <li><a href="#Promise.all">Promise.all</a></li>
+        <li><a href="#Promise.race">Promise.race</a></li>
       </ul>
       <strong>请打开控制台</strong>
     </div>
@@ -234,6 +235,41 @@ Promise.all([
   .catch(function(error) {
     console.log('error: ' + error);
   });</pre>
+      <p>在上面的代码中 Promise.all 接收的数组中每个promise的结果（resolve或reject时传递的参数值），和传递给 Promise.all 的promise数组的顺序是一致的。</p>
+      <button id="case6">运行</button>
+      <p>如果像下面那样使用一个计时器来计算一下程序执行时间的话，那么就可以非常清楚的知道传递给 Promise.all 的promise数组是同时开始执行的。</p>
+      <pre class="prettyprint">
+// `delay`毫秒后执行resolve
+function timerPromisefy(delay) {
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            resolve(delay);
+        }, delay);
+    });
+}
+var startDate = Date.now();
+// 所有promise变为resolve后程序退出
+Promise.all([
+    timerPromisefy(1),
+    timerPromisefy(32),
+    timerPromisefy(64),
+    timerPromisefy(128)
+  ]).then(function (values) {
+      console.log(Date.now() - startDate + 'ms'); // 約128ms
+      console.log(values);    // [1,32,64,128]
+  });</pre>
+      <p>在上面的代码中 Promise.all 接收的数组中每个promise的结果（resolve或reject时传递的参数值），和传递给 Promise.all 的promise数组的顺序是一致的。</p>
+      <button id="case7">运行</button>
+      <p>从上述结果可以看出，传递给 Promise.all 的promise并不是一个个的顺序执行的，而是同时开始、并行执行的。</p>
+    </div>
+  </div>
+  <div id="Promise.race" class="exp-container">
+    <h3 class="exp-title-sub">Promise.race</h3>
+    <div class="exp-stage">
+      <p>Promise.race 的使用方法和Promise.all一样，接收一个promise对象数组为参数。</p>
+      <p>Promise.all 在接收到的所有的对象promise都变为 FulFilled/Rejected 状态之后才会继续进行后面的处理， 与之相对的是 Promise.race 只要有一个promise对象进入 FulFilled/Rejected 状态的话，就会继续进行后面的处理。</p>
+      <pre class="prettyprint">
+</pre>
       <button id="case6">运行</button>
     </div>
   </div>
@@ -394,6 +430,28 @@ Promise.all([
           .catch(function(error) {
             console.log('error: ' + error);
           });
+      });
+      var case7 = document.querySelector('#case7');
+      case7.addEventListener('click', function(e) {
+        // `delay`毫秒后执行resolve
+        function timerPromisefy(delay) {
+          return new Promise(function(resolve) {
+            setTimeout(function() {
+              resolve(delay);
+            }, delay);
+          });
+        }
+        var startDate = Date.now();
+        // 所有promise变为resolve后程序退出
+        Promise.all([
+          timerPromisefy(1),
+          timerPromisefy(32),
+          timerPromisefy(64),
+          timerPromisefy(128)
+        ]).then(function(values) {
+          console.log(Date.now() - startDate + 'ms'); // 約128ms
+          console.log(values); // [1,32,64,128]
+        });
       });
     }());
   </script>

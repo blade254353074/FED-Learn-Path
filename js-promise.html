@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Promise 用法</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/libs/normalize.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/examples.css">
+  <link rel="stylesheet" href="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/css/components/prettify.css">
+  <style>
+
+  </style>
+</head>
+
+<body onload="prettyPrint()">
+  <h1 class="exp-title">JavaScript Promise</h1>
+  <div class="exp-container">
+    <div class="exp-wrap">
+      <ul>
+        <li><a href="#基本用法">基本用法</a></li>
+        <li><a href="#函数thenable化">函数thenable化</a></li>
+      </ul>
+      <strong>请打开控制台</strong>
+    </div>
+  </div>
+  <div id="基本用法" class="exp-container">
+    <h3 class="exp-title-sub">基本用法</h3>
+    <div class="exp-stage">
+      <p>创建promise对象的流程如下所示。</p>
+      <ol>
+        <li>new Promise(fn) 返回一个promise对象</li>
+        <li>
+          在fn 中指定异步等处理
+          <ul>
+            <li>处理结果正常的话，调用resolve(处理结果值)</li>
+            <li>处理结果错误的话，调用reject(Error对象)</li>
+          </ul>
+        </li>
+      </ol>
+      <pre class="prettyprint">
+function asyncFunction() {
+  // 返回 Promise 对象
+  return new Promise(function(resolve, reject) {
+    console.log('Async Start');
+    setTimeout(function() {
+      resolve('Async Hello world');
+    }, 1000);
+  });
+}
+asyncFunction()
+  // 为 Promise 对象添加 .then 调用返回值时的回调函数。
+  .then(function(value) {
+    console.log(value); // => 'Async Hello world'
+  })
+  // 为 Promise 对象添加 .catch 捕获异常的回调函数
+  .catch(function(error) {
+    console.log(error);
+  });</pre>
+      <button id="case1">运行</button>
+      <p></p>
+    </div>
+  </div>
+  <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
+  <script>
+  (function() {
+    var case1 = document.querySelector('#case1');
+    case1.addEventListener('click', function(e) {
+      function asyncFunction() {
+        return new Promise(function(resolve, reject) {
+          console.log('Async Start');
+          setTimeout(function() {
+            resolve('Async Hello world');
+          }, 1000);
+        });
+      }
+      asyncFunction()
+        .then(function(value) {
+          console.log(value); // => 'Async Hello world'
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
+  }());
+  </script>
+</body>
+
+</html>

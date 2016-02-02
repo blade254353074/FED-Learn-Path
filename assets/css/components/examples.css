@@ -21,10 +21,11 @@ body {
 }
 
 button {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
+  padding: 0.25em 1em;
+  border: 0px none;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #5cb85c;
   user-select: none;
 }
 
@@ -45,11 +46,13 @@ a:active {
   text-decoration: underline;
 }
 
-ul, ol {
+ul,
+ol {
   list-style-position: inside;
 }
 
-ul li, ol li {
+ul li,
+ol li {
   margin-left: -1.5em;
 }
 
@@ -104,8 +107,13 @@ ul li, ol li {
 }
 
 @media (max-width: 970px) {
-  ul, ol {
+  ul,
+  ol {
     padding-left: 1.5em;
+  }
+  ol ul,
+  ul ol {
+    padding-left: 3em;
   }
   .exp-title {
     padding: 10px;

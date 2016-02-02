@@ -23,7 +23,9 @@
     <div class="exp-wrap">
       <ul>
         <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#函数thenable化">函数thenable化</a></li>
+        <li><a href="#Promise静态方法">Promise静态方法</a></li>
+        <li><a href="#Promise_chain">Promise方法链</a></li>
+        <li><a href="#Promise.all">Promise.all</a></li>
       </ul>
       <strong>请打开控制台</strong>
     </div>
@@ -37,12 +39,15 @@
         <li>
           在fn 中指定异步等处理
           <ul>
-            <li>处理结果正常的话，调用resolve(处理结果值)</li>
-            <li>处理结果错误的话，调用reject(Error对象)</li>
+            <li>处理结果正常的话，调用 resolve(处理结果值)</li>
+            <li>处理结果错误的话，调用 reject(Error对象)</li>
           </ul>
         </li>
       </ol>
-      <pre class="prettyprint">
+      <div>
+        <p> ** Case 1 基本用法 ** </p>
+        <pre class="prettyprint">
+// **请打开控制台**
 function asyncFunction() {
   // 返回 Promise 对象
   return new Promise(function(resolve, reject) {
@@ -60,33 +65,337 @@ asyncFunction()
   // 为 Promise 对象添加 .catch 捕获异常的回调函数
   .catch(function(error) {
     console.log(error);
-  });</pre>
-      <button id="case1">运行</button>
-      <p></p>
+  });
+// **点击下面的运行**</pre>
+        <button id="case1">运行</button>
+      </div>
+      <div>
+        <p> ** Case 2 Ajax ** </p>
+        <pre class="prettyprint">
+// ** Case 2 Ajax **
+function asyncFunction() {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.github.com/repos/blade254353074/FED-Learn-Path/contents', true);
+    xhr.addEventListener('load', function() {
+      if (xhr.status === 200) {
+        resolve(xhr.responseText);
+      } else {
+        reject(new Error(xhr.statusText));
+      }
+    });
+    xhr.addEventListener('error', function() {
+      reject(new Error(xhr.statusText));
+    });
+    xhr.send();
+  });
+}
+asyncFunction()
+  .then(function(value) {
+    console.log(JSON.parse(value)); // => 'Array'
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+// **点击下面的运行**</pre>
+        <button id="case2">运行</button>
+      </div>
     </div>
   </div>
+  <div id="Promise静态方法" class="exp-container">
+    <h3 class="exp-title-sub">Promise静态方法</h3>
+    <div class="exp-stage">
+      <p>静态方法Promise.resolve(value) 可以认为是 new Promise() 方法的快捷方式。</p>
+      <pre class="prettyprint">
+Promise.resolve(42).then(function(value) {
+  console.log(value);
+});</pre>
+      <p>Promise.resolve 方法另一个作用就是将 thenable 对象转换为promise对象。</p>
+      <pre class="prettyprint">
+// thenable: 类Promise对象。 拥有名为.then方法的对象。
+Promise.resolve($.ajax('/json/comment.json'))
+  .then(function(value) {
+    console.log(value);
+  });</pre>
+      <p>Promise.reject(error)是和 Promise.resolve(value) 类似的静态方法，是 new Promise() 方法的快捷方式。</p>
+      <pre class="prettyprint">
+Promise.reject(new Error("BOOM!")).catch(function(error){
+    console.error(error);
+});</pre>
+    </div>
+  </div>
+  <div id="Promise_chain" class="exp-container">
+    <h3 class="exp-title-sub">Promise方法链</h3>
+    <div class="exp-stage">
+      <p>在Promise里可以将任意个方法连在一起作为一个方法链（method chain）。</p>
+      <pre class="prettyprint">
+function taskA() {
+  console.log("Task A");
+}
+function taskB() {
+  console.log("Task B");
+}
+function onRejected(error) {
+  console.log("Catch Error: A or B", error);
+}
+function finalTask() {
+  console.log("Final Task");
+}
+
+var promise = Promise.resolve();
+promise
+  .then(taskA)
+  .then(taskB)
+  .catch(onRejected)
+  .then(finalTask);</pre>
+      <button id="case3">运行</button>
+      <p>Task A产生异常的例子</p>
+      <pre class="prettyprint">
+function taskA() {
+    console.log("Task A");
+    throw new Error("throw Error @ Task A")
+}
+function taskB() {
+    console.log("Task B");// 不会被调用
+}
+function onRejected(error) {
+    console.log(error);// => "throw Error @ Task A"
+}
+function finalTask() {
+    console.log("Final Task");
+}
+
+var promise = Promise.resolve();
+promise
+    .then(taskA)
+    .then(taskB)
+    .catch(onRejected)
+    .then(finalTask);</pre>
+      <button id="case4">运行</button>
+      <p>在 promise chain 中如何传递参数</p>
+      <pre class="prettyprint">
+function doubleUp(value) {
+  return value * 2;
+}
+function increment(value) {
+  return value + 1;
+}
+function output(value) {
+  console.log(value);// => (1 + 1) * 2
+}
+
+var promise = Promise.resolve(1);
+promise
+  .then(increment)
+  .then(doubleUp)
+  .then(output)
+  .catch(function(error){
+    // promise chain中出现异常的时候会被调用
+    console.error(error);
+  });</pre>
+      <button id="case5">运行</button>
+    </div>
+  </div>
+  <div id="Promise.all" class="exp-container">
+    <h3 class="exp-title-sub">Promise.all</h3>
+    <div class="exp-stage">
+      <p>Promise.all 接收一个 promise对象的数组作为参数，当这个数组里的所有promise对象全部变为resolve或reject状态的时候，它才会去调用 .then 方法。</p>
+      <pre class="prettyprint">
+function getJSON(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.addEventListener('load', function() {
+      if (xhr.status === 200) {
+        try {
+          resolve(JSON.parse(xhr.responseText));
+        } catch (e) {
+          reject(new Error(e));
+        }
+      } else {
+        reject(new Error(xhr.statusText));
+      }
+    });
+    xhr.addEventListener('error', function() {
+      reject(new Error(xhr.statusText));
+    });
+    xhr.send();
+  });
+}
+
+// 当数组当中的 ajax 请求全部执行完成后才会调用 .then 方法
+Promise.all([
+    getJSON('https://api.github.com/repos/blade254353074/FED-Learn-Path'),
+    getJSON('https://api.github.com/repos/blade254353074/FED-Learn-Path/stargazers')
+  ])
+  .then(function(value) {
+    console.log(value);
+  })
+  .catch(function(error) {
+    console.log('error: ' + error);
+  });</pre>
+      <button id="case6">运行</button>
+    </div>
+  </div>
+
   <script src="https://rawgit.com/blade254353074/FED-Learn-Path/gh-pages/assets/js/libs/prettify.js"></script>
   <script>
-  (function() {
-    var case1 = document.querySelector('#case1');
-    case1.addEventListener('click', function(e) {
-      function asyncFunction() {
-        return new Promise(function(resolve, reject) {
-          console.log('Async Start');
-          setTimeout(function() {
-            resolve('Async Hello world');
-          }, 1000);
-        });
-      }
-      asyncFunction()
-        .then(function(value) {
-          console.log(value); // => 'Async Hello world'
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
-  }());
+    (function() {
+      var case1 = document.querySelector('#case1');
+      case1.addEventListener('click', function(e) {
+        function asyncFunction() {
+          return new Promise(function(resolve, reject) {
+            console.log('Async Start');
+            setTimeout(function() {
+              resolve('Async Hello world');
+            }, 1000);
+          });
+        }
+        asyncFunction()
+          .then(function(value) {
+            console.log(value); // => 'Async Hello world'
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
+      var case2 = document.querySelector('#case2');
+      case2.addEventListener('click', function(e) {
+        function asyncFunction() {
+          return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/repos/blade254353074/FED-Learn-Path/contents', true);
+            xhr.addEventListener('load', function() {
+              if (xhr.status === 200) {
+                resolve(xhr.responseText);
+              } else {
+                reject(new Error(xhr.statusText));
+              }
+            });
+            xhr.addEventListener('error', function() {
+              reject(new Error(xhr.statusText));
+            });
+            xhr.send();
+          });
+        }
+        asyncFunction()
+          .then(function(value) {
+            console.log(JSON.parse(value)); // => 'Array'
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
+      var case3 = document.querySelector('#case3');
+      case3.addEventListener('click', function(e) {
+        function taskA() {
+          console.log("Task A");
+        }
+
+        function taskB() {
+          console.log("Task B");
+        }
+
+        function onRejected(error) {
+          console.log("Catch Error: A or B", error);
+        }
+
+        function finalTask() {
+          console.log("Final Task");
+        }
+
+        var promise = Promise.resolve();
+        promise
+          .then(taskA)
+          .then(taskB)
+          .catch(onRejected)
+          .then(finalTask);
+      });
+      var case4 = document.querySelector('#case4');
+      case4.addEventListener('click', function(e) {
+        function taskA() {
+          console.log("Task A");
+          throw new Error("throw Error @ Task A");
+        }
+
+        function taskB() {
+          console.log("Task B"); // 不会被调用
+        }
+
+        function onRejected(error) {
+          console.log("Catch Error: A or B", error); // => "throw Error @ Task A"
+        }
+
+        function finalTask() {
+          console.log("Final Task");
+        }
+
+        var promise = Promise.resolve();
+        promise
+          .then(taskA)
+          .then(taskB)
+          .catch(onRejected)
+          .then(finalTask);
+      });
+      var case5 = document.querySelector('#case5');
+      case5.addEventListener('click', function(e) {
+        function doubleUp(value) {
+          return value * 2;
+        }
+
+        function increment(value) {
+          return value + 1;
+        }
+
+        function output(value) {
+          console.log(value); // => (1 + 1) * 2
+        }
+
+        var promise = Promise.resolve(1);
+        promise
+          .then(increment)
+          .then(doubleUp)
+          .then(output)
+          .catch(function(error) {
+            // promise chain中出现异常的时候会被调用
+            console.error(error);
+          });
+      });
+      var case6 = document.querySelector('#case6');
+      case6.addEventListener('click', function(e) {
+        function getJSON(url) {
+          return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.addEventListener('load', function() {
+              if (xhr.status === 200) {
+                try {
+                  resolve(JSON.parse(xhr.responseText));
+                } catch (e) {
+                  reject(new Error(e));
+                }
+              } else {
+                reject(new Error(xhr.statusText));
+              }
+            });
+            xhr.addEventListener('error', function() {
+              reject(new Error(xhr.statusText));
+            });
+            xhr.send();
+          });
+        }
+        Promise.all([
+            getJSON('https://api.github.com/repos/blade254353074/FED-Learn-Path'),
+            getJSON('https://api.github.com/repos/blade254353074/FED-Learn-Path/stargazers')
+          ])
+          .then(function(value) {
+            console.log(value);
+          })
+          .catch(function(error) {
+            console.log('error: ' + error);
+          });
+      });
+    }());
   </script>
 </body>
 

@@ -267,10 +267,29 @@ Promise.all([
     <h3 class="exp-title-sub">Promise.race</h3>
     <div class="exp-stage">
       <p>Promise.race 的使用方法和Promise.all一样，接收一个promise对象数组为参数。</p>
-      <p>Promise.all 在接收到的所有的对象promise都变为 FulFilled/Rejected 状态之后才会继续进行后面的处理， 与之相对的是 Promise.race 只要有一个promise对象进入 FulFilled/Rejected 状态的话，就会继续进行后面的处理。</p>
+      <p>Promise.all 在接收到的所有的 promise 对象都变为 FulFilled/Rejected 状态之后才会执行 .then， 与之相对的是 Promise.race 只要有一个promise对象进入 FulFilled/Rejected 状态的话，就会执行 .then。</p>
       <pre class="prettyprint">
-</pre>
-      <button id="case6">运行</button>
+// `delay`毫秒后执行resolve
+function timerPromisefy(delay) {
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            console.log('delay: ' + delay);
+            resolve(delay);
+        }, delay);
+    });
+}
+// 任何一个promise变为resolve或reject 的话程序就停止运行
+Promise.race([
+    timerPromisefy(1),
+    timerPromisefy(32),
+    timerPromisefy(64),
+    timerPromisefy(128)
+]).then(function (value) {
+    console.log(value);    // => 1
+});</pre>
+      <p>在第一个变为确定状态的1ms后， .then 注册的回调函数就会被调用，这时候确定状态的promise对象会调用 resolve(1) 因此传递给 value 的值也是1，控制台上会打印出1来。</p>
+      <p>Promise.race 在第一个promise对象变为Fulfilled之后，并不会取消其他promise对象的执行。</p>
+      <button id="case8">运行</button>
     </div>
   </div>
 
@@ -452,6 +471,28 @@ Promise.all([
           console.log(Date.now() - startDate + 'ms'); // 約128ms
           console.log(values); // [1,32,64,128]
         });
+      });
+      var case8 = document.querySelector('#case8');
+      case8.addEventListener('click', function(e) {
+        // `delay`毫秒后执行resolve
+        function timerPromisefy(delay) {
+          return new Promise(function(resolve) {
+            setTimeout(function() {
+              console.log('delay: ' + delay);
+              resolve(delay);
+            }, delay);
+          });
+        }
+        // 任何一个promise变为resolve或reject 的话程序就停止运行
+        Promise.race([
+          timerPromisefy(1),
+          timerPromisefy(32),
+          timerPromisefy(64),
+          timerPromisefy(128)
+        ]).then(function(value) {
+          console.log(value); // => 1
+        });
+
       });
     }());
   </script>

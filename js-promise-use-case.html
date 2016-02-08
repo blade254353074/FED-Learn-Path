@@ -27,6 +27,7 @@
         <li><a href="#Promise_chain">Promise方法链</a></li>
         <li><a href="#Promise.all">Promise.all</a></li>
         <li><a href="#Promise.race">Promise.race</a></li>
+        <li><a href="#done&finally">done()和finally()</a></li>
       </ul>
       <strong>请打开控制台</strong>
     </div>
@@ -117,7 +118,17 @@ Promise.resolve(42).then(function(value) {
 Promise.resolve($.ajax('/json/comment.json'))
   .then(function(value) {
     console.log(value);
-  });</pre>
+  });
+
+let thenable = {
+  then: function(resolve, reject) {
+    resolve(42);
+  }
+};
+let p1 = Promise.resolve(thenable);
+p1.then(function(value) {
+  console.log(value);  // 42
+});</pre>
       <p>Promise.reject(error)是和 Promise.resolve(value) 类似的静态方法，是 new Promise() 方法的快捷方式。</p>
       <pre class="prettyprint">
 Promise.reject(new Error("BOOM!")).catch(function(error){
@@ -290,6 +301,48 @@ Promise.race([
       <p>在第一个变为确定状态的1ms后， .then 注册的回调函数就会被调用，这时候确定状态的promise对象会调用 resolve(1) 因此传递给 value 的值也是1，控制台上会打印出1来。</p>
       <p>Promise.race 在第一个promise对象变为Fulfilled之后，并不会取消其他promise对象的执行。</p>
       <button id="case8">运行</button>
+    </div>
+  </div>
+  <div id="done&finally" class="exp-container">
+    <h3 class="exp-title-sub">done() 和 finally()</h3>
+    <div class="exp-stage">
+      <p>这两个 Promise 对象的方法是在 Promise/A+ 规范中实现的，当前 Chrome(47.0.2526.111) 实现的还只是 Promise/A 规范</p>
+      <h4>done()</h4>
+      <p>Promise对象的回调链，不管以then方法或catch方法结尾，要是最后一个方法抛出错误，都有可能无法捕捉到（因为Promise内部的错误不会冒泡到全局）。</p>
+      <p>因此，我们可以提供一个done方法，总是处于回调链的尾端，保证抛出任何可能出现的错误。</p>
+      <pre class="prettyprint">
+asyncFunc()
+  .then(f1)
+  .catch(r1)
+  .then(f2)
+  .done();
+// 实现原理
+Promise.prototype.done = function (onFulfilled, onRejected) {
+  this.then(onFulfilled, onRejected)
+    .catch(function (reason) {
+      // 抛出一个全局错误
+      setTimeout(() => { throw reason }, 0);
+    });
+};</pre>
+      <p>从上面代码可见，done方法的使用，可以像then方法那样用，提供Fulfilled和Rejected状态的回调函数，也可以不提供任何参数。但不管怎样，done都会捕捉到任何可能出现的错误，并向全局抛出。</p>
+      <h4>finally()</h4>
+      <p>finally方法用于指定不管Promise对象最后状态如何，都会执行的操作。它与done方法的最大区别，它接受一个普通的回调函数作为参数，该函数不管怎样都必须执行。</p>
+      <p>下面是一个例子，服务器使用Promise处理请求，然后使用finally方法关掉服务器。</p>
+      <pre class="prettyprint">
+server.listen(0)
+  .then(function () {
+    // run test
+  })
+  .finally(server.stop);
+// 实现原理
+Promise.prototype.finally = function (callback) {
+  let P = this.constructor;
+  return this.then(
+    value  => P.resolve(callback()).then(() => value),
+    reason => P.resolve(callback()).then(() => { throw reason })
+  );
+};</pre>
+      <p>上面代码中，不管前面的Promise是fulfilled还是rejected，都会执行回调函数callback。</p>
     </div>
   </div>
 
